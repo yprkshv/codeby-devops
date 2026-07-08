@@ -1,0 +1,87 @@
+Script started on 2026-07-08 16:36:04+03:00 [TERM="xterm-256color" TTY="/dev/pts/3" COLUMNS="204" LINES="59"]
+[?2004h]0;user@ubuntuEDU: ~[01;32muser@ubuntuEDU[00m:[01;34m~[00m$ ssu[K[Kudo apt install nginx
+[?2004l[sudo] password for user: 
+Reading package lists... 0%Reading package lists... 100%Reading package lists... Done
+Building dependency tree... 0%Building dependency tree... 0%Building dependency tree... 50%Building dependency tree... 50%Building dependency tree... Done
+Reading state information... 0% Reading state information... 0%Reading state information... Done
+The following NEW packages will be installed:
+  nginx
+0 upgraded, 1 newly installed, 0 to remove and 76 not upgraded.
+Need to get 519 kB of archives.
+After this operation, 1,378 kB of additional disk space will be used.
+[33m0% [Working][0m            Get:1 http://ports.ubuntu.com/ubuntu-ports noble-updates/main arm64 nginx arm64 1.24.0-2ubuntu7.13 [519 kB]
+[33m1% [1 nginx 8,276 B/519 kB 2%][0m[33m                              100% [Working][0m              Fetched 519 kB in 1s (758 kB/s)
+
+7[0;58r8[1ASelecting previously unselected package nginx.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 197227 files and directories currently installed.)
+Preparing to unpack .../nginx_1.24.0-2ubuntu7.13_arm64.deb ...
+7[59;0f[42m[30mProgress: [  0%][49m[39m [......................................................................................................................................................................................] 87[59;0f[42m[30mProgress: [ 20%][49m[39m [####################################..................................................................................................................................................] 8Unpacking nginx (1.24.0-2ubuntu7.13) ...
+7[59;0f[42m[30mProgress: [ 40%][49m[39m [########################################################################..............................................................................................................] 8Setting up nginx (1.24.0-2ubuntu7.13) ...
+7[59;0f[42m[30mProgress: [ 60%][49m[39m [#############################################################################################################.........................................................................] 87[59;0f[42m[30mProgress: [ 80%][49m[39m [#################################################################################################################################################.....................................] 8Processing triggers for man-db (2.12.0-4build2) ...
+
+7[0;59r8[1A[J[?2004h]0;user@ubuntuEDU: ~[01;32muser@ubuntuEDU[00m:[01;34m~[00m$ sudo systemctl sa[Ktatus nginx
+[?2004l[?1h=○ nginx.service - A high performance web server and a reverse proxy server[m
+     Loaded: loaded (]8;;file://ubuntuEDU/usr/lib/systemd/system/nginx.service/usr/lib/systemd/system/nginx.service]8;;; [0;1;38;5;185mdisabled[0m; preset: [0;1;32menabled[0m)[m
+     Active: inactive (dead)[m
+       Docs: ]8;;man:nginx(8)man:nginx(8)]8;;[m
+[m
+Jul 08 16:17:02 ubuntuEDU nginx[62201]: nginx: [emerg] bind() to [::]:80 failed (98: Address already in use)[m
+Jul 08 16:17:02 ubuntuEDU nginx[62201]: nginx: [emerg] still could not bind()[m
+Jul 08 16:17:02 ubuntuEDU systemd[1]: [0;1;39m[0;1;31m[0;1;39mnginx.service: Control process exited, code=exited, status=1/FAILURE[0m[m
+Jul 08 16:17:02 ubuntuEDU systemd[1]: [0;1;38;5;185m[0;1;39m[0;1;38;5;185mnginx.service: Failed with result 'exit-code'.[0m[m
+Jul 08 16:17:02 ubuntuEDU systemd[1]: [0;1;31m[0;1;39m[0;1;31mFailed to start nginx.service - A high performance web server and a reverse proxy server.[0m[m
+Jul 08 16:34:04 ubuntuEDU systemd[1]: Starting nginx.service - A high performance web server and a reverse proxy server...[m
+Jul 08 16:34:04 ubuntuEDU systemd[1]: Started nginx.service - A high performance web server and a reverse proxy server.[m
+Jul 08 16:35:28 ubuntuEDU systemd[1]: Stopping nginx.service - A high performance web server and a reverse proxy server...[m
+Jul 08 16:35:28 ubuntuEDU systemd[1]: nginx.service: Deactivated successfully.[m
+Jul 08 16:35:28 ubuntuEDU systemd[1]: Stopped nginx.service - A high performance web server and a reverse proxy server.[m
+[K[?1l>[?2004h]0;user@ubuntuEDU: ~[01;32muser@ubuntuEDU[00m:[01;34m~[00m$ sudo systemctl status nginx[C[1P nginx[1P nginx[1P nginx[1P nginxo nginxp nginx
+[?2004l[?2004h]0;user@ubuntuEDU: ~[01;32muser@ubuntuEDU[00m:[01;34m~[00m$ sudo systemctl stop nginx[1P nginx[1P nginx[1P nginx[1P nginxd nginxi nginxs nginxa nginxb nginxl nginxe nginx
+[?2004lSynchronizing state of nginx.service with SysV service script with /usr/lib/systemd/systemd-sysv-install.
+Executing: /usr/lib/systemd/systemd-sysv-install disable nginx
+[?2004h]0;user@ubuntuEDU: ~[01;32muser@ubuntuEDU[00m:[01;34m~[00m$ sudo systemctl disable nginx[3Pstop[C[C[C[C[C[C[2@atus[C[C[C[C[C[C[C[K[K[K[K[Kapache2
+[?2004l[?1h=○ apache2.service - The Apache HTTP Server[m
+     Loaded: loaded (]8;;file://ubuntuEDU/usr/lib/systemd/system/apache2.service/usr/lib/systemd/system/apache2.service]8;;; [0;1;38;5;185mdisabled[0m; preset: [0;1;32menabled[0m)[m
+     Active: inactive (dead)[m
+       Docs: ]8;;https://httpd.apache.org/docs/2.4/https://httpd.apache.org/docs/2.4/]8;;[m
+[m
+Jul 07 07:26:15 ubuntuEDU apachectl[51260]: AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 127.0.1.1. Set the 'ServerName' directive globally to suppress t[m[7m>[27m
+Jul 07 07:26:15 ubuntuEDU systemd[1]: Reloaded apache2.service - The Apache HTTP Server.[m
+Jul 08 00:40:51 ubuntuEDU systemd[1]: Reloading apache2.service - The Apache HTTP Server...[m
+Jul 08 00:40:51 ubuntuEDU apachectl[55687]: AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 127.0.1.1. Set the 'ServerName' directive globally to suppress t[m[7m>[27m
+Jul 08 00:40:51 ubuntuEDU systemd[1]: Reloaded apache2.service - The Apache HTTP Server.[m
+Jul 08 16:30:00 ubuntuEDU systemd[1]: Stopping apache2.service - The Apache HTTP Server...[m
+Jul 08 16:30:00 ubuntuEDU apachectl[63131]: AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 127.0.1.1. Set the 'ServerName' directive globally to suppress t[m[7m>[27m
+Jul 08 16:30:00 ubuntuEDU systemd[1]: apache2.service: Deactivated successfully.[m
+Jul 08 16:30:00 ubuntuEDU systemd[1]: Stopped apache2.service - The Apache HTTP Server.[m
+Jul 08 16:30:00 ubuntuEDU systemd[1]: apache2.service: Consumed 10.398s CPU time, 11.6M memory peak, 1.6M memory swap peak.[m
+[7mlines 1-15/15 (END)[27m[K[K[?1l>
+[?2004h]0;user@ubuntuEDU: ~[01;32muser@ubuntuEDU[00m:[01;34m~[00m$ sudo nano [K[K[K[K[K[K[K[K[K[K[7msudo nano /etc/systemd/system/nginx-custom.service[27m
+[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Csudo nano /etc/systemd/system/nginx-custom.service
+[A
+[?2004l[?2004h[?1049h[22;0;0t[1;59r(B[m[4l[?7h[39;49m[?1h=[?1h=[?25l[39;49m(B[m[H[2J[57;97H(B[0;7m[ New File ](B[m[H(B[0;7m  GNU nano 7.2                                                                      /etc/systemd/system/nginx-custom.service                                                                                [1;203H(B[m[58d(B[0;7m^G(B[m Help[58;18H(B[0;7m^O(B[m Write Out     (B[0;7m^W(B[m Where Is[52G(B[0;7m^K(B[m Cut[58;69H(B[0;7m^T(B[m Execute[86G(B[0;7m^C(B[m Location[103G(B[0;7mM-U(B[m Undo[58;120H(B[0;7mM-A(B[m Set Mark     (B[0;7mM-](B[m To Bracket   (B[0;7mM-Q(B[m Previous     (B[0;7m^B(B[m Back[58;188H(B[0;7m^◂(B[m Prev Word[59d(B[0;7m^X(B[m Exit[59;18H(B[0;7m^R(B[m Read File     (B[0;7m^\(B[m Replace[52G(B[0;7m^U(B[m Paste[59;69H(B[0;7m^J(B[m Justify[86G(B[0;7m^/(B[m Go To Line    (B[0;7mM-E(B[m Redo[59;120H(B[0;7mM-6(B[m Copy[59;137H(B[0;7m^Q(B[m Where Was     (B[0;7mM-W(B[m Next[59;171H(B[0;7m^F(B[m Forward[188G(B[0;7m^▸(B[m Next Word[2d[?12l[?25h[?25l[1;126H(B[0;7m*[57d(B[m[K[1;203H[2d(B[0;1m[32m[Unit][3d[39m(B[mDescription=The NGINX HTTP and reverse proxy server[4dAfter=network.target remote-fs.target nss-lookup.target[6d(B[0;1m[32m[Service][7d[39m(B[mType=forking[8dPIDFile=/run/nginx.pid[9dExecStartPre=/usr/sbin/nginx -t -c /etc/nginx/nginx.conf[10dExecStart=/usr/sbin/nginx -c /etc/nginx/nginx.conf[11dExecReload=/usr/sbin/nginx -s reload[12dExecStop=/usr/sbin/nginx -s stop[13dPrivateTmp=true[15d(B[0;1m[32m[Install][16d[39m(B[mWantedBy=multi-user.target[17d[?12l[?25h[?25l[57d(B[0;7mSave modified buffer?                                                                                                                                                                                       [58;1H Y(B[m Yes[K[59d(B[0;7m N(B[m No  [59;17H(B[0;7m^C(B[m Cancel[K[57;23H[?12l[?25h[?25l[58d(B[0;7m^G(B[m Help[58;52H(B[0;7mM-D(B[m DOS Format[58;103H(B[0;7mM-A(B[m Append[58;154H(B[0;7mM-B(B[m Backup File[59d(B[0;7m^C(B[m Cancel[17G         [59;52H(B[0;7mM-M(B[m Mac Format[59;103H(B[0;7mM-P(B[m Prepend[59;154H(B[0;7m^T(B[m Browse[57d(B[0;7mFile Name to Write: /etc/systemd/system/nginx-custom.service(B[m[?12l[?25h[?25l[57;95H[1K (B[0;7m[ Writing... ](B[m[K[1;126H(B[0;7m [203G(B[m[57;94H(B[0;7m[ Wrote 15 lines ](B[m[J[59d[?12l[?25h[59;1H[?1049l[23;0;0t[?1l>[?2004l[?2004h]0;user@ubuntuEDU: ~[01;32muser@ubuntuEDU[00m:[01;34m~[00m$ [7msudo systemctl daemon-reload[27m
+[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Csudo systemctl daemon-reload
+[A
+[?2004l[?2004h]0;user@ubuntuEDU: ~[01;32muser@ubuntuEDU[00m:[01;34m~[00m$ sudo systemctl daemon-reload[K[K[K[K[K[K[K[K[K[K[K[K[Kstart nginx-ser[K[K[Kcustmon[K[K[Kom
+[?2004l[?2004h]0;user@ubuntuEDU: ~[01;32muser@ubuntuEDU[00m:[01;34m~[00m$ sudo systemctl start nginx-custom[1P nginx-custom[1P nginx-custom[1P nginx-custom[1P nginx-custom[1P nginx-custome nginx-customn nginx-customa nginx-customb nginx-customl nginx-custome nginx-custom
+[?2004lCreated symlink /etc/systemd/system/multi-user.target.wants/nginx-custom.service → /etc/systemd/system/nginx-custom.service.
+[?2004h]0;user@ubuntuEDU: ~[01;32muser@ubuntuEDU[00m:[01;34m~[00m$ sudo systemctl enable nginx-custom[C[1P nginx-custom[1P nginx-custom[1P nginx-custom[1P nginx-custom[1P nginx-custom[1P nginx-customs nginx-customt nginx-customa nginx-customt nginx-customu nginx-customs nginx-custom
+[?2004l[?1h=[0;1;32m●[0m nginx-custom.service - The NGINX HTTP and reverse proxy server[m
+     Loaded: loaded (]8;;file://ubuntuEDU/etc/systemd/system/nginx-custom.service/etc/systemd/system/nginx-custom.service]8;;; [0;1;32menabled[0m; preset: [0;1;32menabled[0m)[m
+     Active: [0;1;32mactive (running)[0m since Wed 2026-07-08 16:37:43 MSK; 13s ago[m
+   Main PID: 64849 (nginx)[m
+      Tasks: 2 (limit: 4532)[m
+     Memory: 1.7M (peak: 2.7M)[m
+        CPU: 20ms[m
+     CGroup: /system.slice/nginx-custom.service[m
+             ├─[0;38;5;245m64849 "nginx: master process /usr/sbin/nginx -c /etc/nginx/nginx.conf"[0m[m
+             └─[0;38;5;245m64850 "nginx: worker process"[0m[m
+[m
+Jul 08 16:37:43 ubuntuEDU systemd[1]: Starting nginx-custom.service - The NGINX HTTP and reverse proxy server...[m
+Jul 08 16:37:43 ubuntuEDU nginx[64846]: nginx: the configuration file /etc/nginx/nginx.conf syntax is ok[m
+Jul 08 16:37:43 ubuntuEDU nginx[64846]: nginx: configuration file /etc/nginx/nginx.conf test is successful[m
+Jul 08 16:37:43 ubuntuEDU systemd[1]: Started nginx-custom.service - The NGINX HTTP and reverse proxy server.[m
+[K[?1l>[?2004h]0;user@ubuntuEDU: ~[01;32muser@ubuntuEDU[00m:[01;34m~[00m$ [?2004l
+exit
+
+Script done on 2026-07-08 16:38:08+03:00 [COMMAND_EXIT_CODE="0"]
