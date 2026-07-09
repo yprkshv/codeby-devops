@@ -1,0 +1,27 @@
+Script started on 2026-07-09 16:49:11+03:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="79" LINES="51"]
+[?2004h]0;user@client: ~[01;32muser@client[00m:[01;34m~[00m$ ip route
+[?2004l169.254.0.0/16 dev eth0 scope link metric 1000 
+192.168.0.0/24 dev eth0 proto kernel scope link src 192.168.0.129 metric 100 
+[?2004h]0;user@client: ~[01;32muser@client[00m:[01;34m~[00m$ ping 8.8.8.8
+[?2004lping: connect: Network is unreachable
+[?2004h]0;user@client: ~[01;32muser@client[00m:[01;34m~[00m$ ping 8.8.8.8[4Pip routesudo iptables -F -[Kdo passwd root[8Pip routeping 8.8.8.8sudo systemctl status openvpn@client [1P[1P[1P[1@r[1@t
+[?2004l[sudo] password for user: 
+[?2004h]0;user@client: ~[01;32muser@client[00m:[01;34m~[00m$ ip route
+[?2004l0.0.0.0/1 via 10.8.0.1 dev tun0 
+10.8.0.0/24 dev tun0 proto kernel scope link src 10.8.0.2 
+128.0.0.0/1 via 10.8.0.1 dev tun0 
+169.254.0.0/16 dev eth0 scope link metric 1000 
+192.168.0.0/24 dev eth0 proto kernel scope link src 192.168.0.129 metric 100 
+[?2004h]0;user@client: ~[01;32muser@client[00m:[01;34m~[00m$ ping 8.8.8.8
+[?2004lPING 8.8.8.8 (8.8.8.8) 56(84) bytes of data.
+64 bytes from 8.8.8.8: icmp_seq=1 ttl=106 time=40.4 ms
+64 bytes from 8.8.8.8: icmp_seq=2 ttl=106 time=42.0 ms
+64 bytes from 8.8.8.8: icmp_seq=3 ttl=106 time=41.8 ms
+^C
+--- 8.8.8.8 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2003ms
+rtt min/avg/max/mdev = 40.428/41.405/41.994/0.695 ms
+[?2004h]0;user@client: ~[01;32muser@client[00m:[01;34m~[00m$ [?2004l
+exit
+
+Script done on 2026-07-09 16:49:40+03:00 [COMMAND_EXIT_CODE="0"]
