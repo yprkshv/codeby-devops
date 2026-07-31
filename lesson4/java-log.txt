@@ -1,0 +1,36 @@
+Script started on 2026-07-08 16:10:38+03:00 [TERM="xterm-256color" TTY="/dev/pts/2" COLUMNS="204" LINES="63"]
+[?2004h]0;user@ubuntuEDU: ~[01;32muser@ubuntuEDU[00m:[01;34m~[00m$ [7msudo update-alternatives --config java[27m[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Csudo update-alternatives --config java
+[?2004l[sudo] password for user: 
+There are 2 choices for the alternative java (providing /usr/bin/java).
+
+  Selection    Path                                         Priority   Status
+------------------------------------------------------------
+  0            /usr/lib/jvm/java-21-openjdk-arm64/bin/java   2111      auto mode
+  1            /usr/lib/jvm/java-21-openjdk-arm64/bin/java   2111      manual mode
+* 2            /usr/lib/jvm/jdk-26.0.1/bin/java              1         manual mode
+
+Press <enter> to keep the current choice[*], or type selection number: 0 1
+update-alternatives: using /usr/lib/jvm/java-21-openjdk-arm64/bin/java to provide /usr/bin/java (java) in manual mode
+[?2004h]0;user@ubuntuEDU: ~[01;32muser@ubuntuEDU[00m:[01;34m~[00m$ java -version
+[?2004lopenjdk version "21.0.11" 2026-04-21
+OpenJDK Runtime Environment (build 21.0.11+10-1-24.04.2-Ubuntu)
+OpenJDK 64-Bit Server VM (build 21.0.11+10-1-24.04.2-Ubuntu, mixed mode, sharing)
+[?2004h]0;user@ubuntuEDU: ~[01;32muser@ubuntuEDU[00m:[01;34m~[00m$ java -versionsudo update-alternatives --config java
+[?2004lThere are 2 choices for the alternative java (providing /usr/bin/java).
+
+  Selection    Path                                         Priority   Status
+------------------------------------------------------------
+  0            /usr/lib/jvm/java-21-openjdk-arm64/bin/java   2111      auto mode
+* 1            /usr/lib/jvm/java-21-openjdk-arm64/bin/java   2111      manual mode
+  2            /usr/lib/jvm/jdk-26.0.1/bin/java              1         manual mode
+
+Press <enter> to keep the current choice[*], or type selection number: 2
+update-alternatives: using /usr/lib/jvm/jdk-26.0.1/bin/java to provide /usr/bin/java (java) in manual mode
+[?2004h]0;user@ubuntuEDU: ~[01;32muser@ubuntuEDU[00m:[01;34m~[00m$ sudo update-alternatives --config java[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[25Pjava -version
+[?2004ljava version "26.0.1" 2026-04-21
+Java(TM) SE Runtime Environment (build 26.0.1+8-34)
+Java HotSpot(TM) 64-Bit Server VM (build 26.0.1+8-34, mixed mode, sharing)
+[?2004h]0;user@ubuntuEDU: ~[01;32muser@ubuntuEDU[00m:[01;34m~[00m$ [?2004l
+exit
+
+Script done on 2026-07-08 16:11:14+03:00 [COMMAND_EXIT_CODE="0"]
