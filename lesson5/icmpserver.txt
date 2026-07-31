@@ -1,0 +1,16 @@
+Script started on 2026-07-09 14:39:32+03:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="102" LINES="51"]
+[?2004h]0;user@server: ~[01;32muser@server[00m:[01;34m~[00m$ iptables[K[K[K[K[K[K[K[Ksudo iptables -l[KL
+[?2004l[sudo] password for user: 
+Chain INPUT (policy ACCEPT)
+target     prot opt source               destination         
+DROP       icmp --  anywhere             anywhere            
+
+Chain FORWARD (policy ACCEPT)
+target     prot opt source               destination         
+
+Chain OUTPUT (policy ACCEPT)
+target     prot opt source               destination         
+[?2004h]0;user@server: ~[01;32muser@server[00m:[01;34m~[00m$ [?2004l
+exit
+
+Script done on 2026-07-09 14:39:55+03:00 [COMMAND_EXIT_CODE="0"]
