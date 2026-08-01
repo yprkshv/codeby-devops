@@ -1,0 +1,27 @@
+- name: Host setup
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Обновить кэш apt
+      apt:
+        update_cache: true
+        cache_valid_time: 3600
+
+    - name: Установить пакеты wget, htop, nginx
+      apt:
+        name:
+          - wget
+          - htop
+          - nginx
+        state: present
+
+    - name: Запустить и включить автозапуск nginx
+      service:
+        name: nginx
+        state: started
+        enabled: true
+
+    - name: Вывести информацию об окружении
+      debug:
+        msg: "This host is in {{ env_name }} environment"
