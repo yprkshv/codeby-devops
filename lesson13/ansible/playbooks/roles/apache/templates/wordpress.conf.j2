@@ -1,0 +1,15 @@
+# Ansible managed - файл сгенерирован автоматически, не редактировать вручную
+<VirtualHost *:{{ apache_listen_port }}>
+    ServerName {{ apache_server_name }}
+    ServerAdmin {{ apache_server_admin }}
+    DocumentRoot {{ wordpress_doc_root }}
+
+    <Directory {{ wordpress_doc_root }}>
+        Options FollowSymLinks
+        AllowOverride All
+        Require all granted
+    </Directory>
+
+    ErrorLog {{ apache_log_dir }}/wordpress_error.log
+    CustomLog {{ apache_log_dir }}/wordpress_access.log combined
+</VirtualHost>

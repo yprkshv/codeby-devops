@@ -1,0 +1,20 @@
+apache_server_name: "wordpress.local"
+apache_server_admin: "webmaster@wordpress.local"
+
+wordpress_doc_root: "/var/www/wordpress"
+
+apache_listen_port: 80
+
+apache_configure_firewall: true
+
+apache_install_php: true
+
+php_packages_extra:
+  - php
+  - php-mysqlnd
+  - php-gd
+  - php-mbstring
+  - php-xml
+  - php-curl
+  - php-zip
+  - php-intl

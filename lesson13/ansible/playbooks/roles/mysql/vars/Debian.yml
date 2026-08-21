@@ -1,0 +1,10 @@
+---
+mysql_packages:
+  - mysql-server
+  - mysql-client
+  - python3-pymysql
+
+mysql_service_name: mysql
+mysql_config_file: /etc/mysql/mysql.conf.d/mysqld.cnf
+mysql_config_dir: /etc/mysql/mysql.conf.d
+mysql_socket: /var/run/mysqld/mysqld.sock
