@@ -1,0 +1,5 @@
+- name: Развернуть веб-сервер Apache
+  hosts: web
+  become: true
+  roles:
+    - apache

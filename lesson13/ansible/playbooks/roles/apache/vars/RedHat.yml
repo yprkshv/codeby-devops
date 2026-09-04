@@ -1,0 +1,22 @@
+---
+apache_packages:
+  - httpd
+
+apache_service_name: httpd
+apache_user: apache
+apache_group: apache
+apache_vhost_dir: /etc/httpd/conf.d
+apache_vhost_file_suffix: ".conf"
+apache_log_dir: /var/log/httpd
+
+php_packages:
+  - php
+  - php-mysqlnd
+  - php-gd
+  - php-mbstring
+  - php-xml
+  - php-curl
+  - php-zip
+  - php-intl
+
+firewalld_service_name: http

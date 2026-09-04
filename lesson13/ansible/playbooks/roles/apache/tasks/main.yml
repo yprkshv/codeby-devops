@@ -1,0 +1,121 @@
+---
+- name: init OS
+  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
+
+- name: Update APT package cache
+  ansible.builtin.apt:
+    update_cache: yes
+    cache_valid_time: 3600
+  become: yes
+  when: ansible_os_family == "Debian"
+  
+- name: install Apache
+  ansible.builtin.package:
+    name: "{{ apache_packages }}"
+    state: present
+  become: true
+
+- name: install PHP
+  ansible.builtin.package:
+    name: "{{ php_packages }}"
+    state: present
+  become: true
+  when: apache_install_php | bool
+
+- name: create site folders
+  ansible.builtin.file:
+    path: "{{ wordpress_doc_root }}"
+    state: directory
+    owner: "{{ apache_user }}"
+    group: "{{ apache_group }}"
+    mode: "0755"
+    recurse: true
+  become: true
+
+- name:  exec tasks
+  ansible.builtin.template:
+    src: wordpress.conf.j2
+    dest: "{{ apache_vhost_dir }}/wordpress{{ apache_vhost_file_suffix }}"
+    owner: root
+    group: root
+    mode: "0644"
+  become: true
+  notify: restart apache
+
+# debian\ubuntu
+
+- name: "Debian/Ubuntu: enable rewrite"
+  community.general.apache2_module:
+    name: rewrite
+    state: present
+  become: true
+  when: ansible_os_family == "Debian"
+  notify: restart apache
+
+- name: "Debian/Ubuntu: site enable"
+  ansible.builtin.command: "a2ensite wordpress.conf"
+  args:
+    creates: "/etc/apache2/sites-enabled/wordpress.conf"
+  become: true
+  when: ansible_os_family == "Debian"
+  notify: restart apache
+
+- name: "Debian/Ubuntu: disable dafault"
+  ansible.builtin.command: "a2dissite 000-default.conf"
+  args:
+    removes: "/etc/apache2/sites-enabled/000-default.conf"
+  become: true
+  when: ansible_os_family == "Debian"
+  notify: restart apache
+
+- name: "Debian/Ubuntu: ufw"
+  community.general.ufw:
+    rule: allow
+    port: "{{ apache_listen_port }}"
+    proto: tcp
+  become: true
+  when:
+    - ansible_os_family == "Debian"
+    - apache_configure_firewall | bool
+  ignore_errors: true
+
+# RHEL
+
+- name: "RHEL/CentOS: SELinux check"
+  ansible.posix.seboolean:
+    name: httpd_can_network_connect
+    state: true
+    persistent: true
+  become: true
+  when: ansible_os_family == "RedHat"
+  ignore_errors: true
+
+- name: "RHEL/CentOS: allow http firewalld"
+  ansible.posix.firewalld:
+    service: "{{ firewalld_service_name }}"
+    permanent: true
+    immediate: true
+    state: enabled
+  become: true
+  when:
+    - ansible_os_family == "RedHat"
+    - apache_configure_firewall | bool
+  ignore_errors: true
+
+# RHEL | debian1\ubuntu
+
+- name: enable Apache
+  ansible.builtin.service:
+    name: "{{ apache_service_name }}"
+    state: started
+    enabled: true
+  become: true
+  
+#- name: "RHEL/CentOS: отключить дефолтную welcome-страницу httpd"
+#  ansible.builtin.file:
+#    path: /etc/httpd/conf.d/welcome.conf
+#    state: absent
+#  become: true
+#  when: ansible_os_family == "RedHat"
+#  notify: restart apache  
+  

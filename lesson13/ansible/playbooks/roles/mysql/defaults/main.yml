@@ -1,0 +1,16 @@
+---
+mysql_root_password: "passw0rd"
+
+wordpress_db_name: "wordpress"
+wordpress_db_user: "wp_user"
+wordpress_db_password: "passw0rd"
+wordpress_db_host: "localhost"
+
+mysql_bind_address: "127.0.0.1"
+
+wordpress_db_allowed_hosts:
+  - "localhost"
+
+mysql_remove_anonymous_users: true
+mysql_remove_test_db: true
+mysql_disallow_root_login_remotely: true

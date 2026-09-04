@@ -1,0 +1,5 @@
+- name: Развернуть сервер базы данных
+  hosts: db
+  become: true
+  roles:
+    - mysql

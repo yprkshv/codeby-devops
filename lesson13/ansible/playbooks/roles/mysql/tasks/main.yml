@@ -1,0 +1,120 @@
+- name: load values
+  ansible.builtin.include_vars: "{{ ansible_os_family }}.yml"
+
+- name: install DB 
+  ansible.builtin.package:
+    name: "{{ mysql_packages }}"
+    state: present
+  become: true
+
+- name: check folder
+  ansible.builtin.file:
+    path: "{{ mysql_config_dir }}"
+    state: directory
+    owner: root
+    group: root
+    mode: "0755"
+  become: true
+
+- name: conf bind-address
+  ansible.builtin.template:
+    src: 99-wordpress.cnf.j2
+    dest: "{{ mysql_config_dir }}/99-wordpress.cnf"
+    owner: root
+    group: root
+    mode: "0644"
+  become: true
+  notify: restart mysql
+
+- name: enable DB
+  ansible.builtin.service:
+    name: "{{ mysql_service_name }}"
+    state: started
+    enabled: true
+  become: true
+
+- name: check root pass
+  ansible.builtin.stat:
+    path: /root/.my.cnf
+  register: root_my_cnf
+  become: true
+
+- name: create root pass for MySQL/MariaDB 
+  community.mysql.mysql_user:
+    name: root
+    host: localhost
+    password: "{{ mysql_root_password }}"
+    login_unix_socket: "{{ mysql_socket }}"
+    check_implicit_admin: true
+  become: true
+  when: not root_my_cnf.stat.exists
+
+- name: create/root/.my.cnf 
+  ansible.builtin.template:
+    src: my.cnf.j2
+    dest: /root/.my.cnf
+    owner: root
+    group: root
+    mode: "0600"
+  become: true
+
+- name: create root pass and edit hosts
+  community.mysql.mysql_user:
+    name: root
+    host: "{{ item }}"
+    password: "{{ mysql_root_password }}"
+    login_unix_socket: "{{ mysql_socket }}"
+  loop:
+    - 127.0.0.1
+    - "::1"
+  become: true
+  when: not root_my_cnf.stat.exists
+
+- name: remove anon
+  community.mysql.mysql_user:
+    name: ""
+    host_all: true
+    state: absent
+    login_unix_socket: "{{ mysql_socket }}"
+  become: true
+  when: mysql_remove_anonymous_users | bool
+
+- name: Remova testDB
+  community.mysql.mysql_db:
+    name: test
+    state: absent
+    login_unix_socket: "{{ mysql_socket }}"
+  become: true
+  when: mysql_remove_test_db | bool
+
+- name: deny root access
+  community.mysql.mysql_user:
+    name: root
+    host: "{{ item }}"
+    state: absent
+    login_unix_socket: "{{ mysql_socket }}"
+  loop: "{{ ansible_facts['all_ipv4_addresses'] | default([]) }}"
+  become: true
+  when: mysql_disallow_root_login_remotely | bool
+  ignore_errors: true
+
+- name: create DB
+  community.mysql.mysql_db:
+    name: "{{ wordpress_db_name }}"
+    state: present
+    encoding: utf8mb4
+    collation: utf8mb4_unicode_ci
+    login_unix_socket: "{{ mysql_socket }}"
+  become: true
+
+- name: create DB and grants
+  community.mysql.mysql_user:
+    name: "{{ wordpress_db_user }}"
+    password: "{{ wordpress_db_password }}"
+    host: "{{ item }}"
+    priv: "{{ wordpress_db_name }}.*:ALL"
+    login_unix_socket: "{{ mysql_socket }}"
+    state: present
+  loop: "{{ wordpress_db_allowed_hosts }}"
+  become: true
+

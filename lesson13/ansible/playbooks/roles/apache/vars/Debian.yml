@@ -1,0 +1,23 @@
+---
+apache_packages:
+  - apache2
+
+apache_service_name: apache2
+apache_user: www-data
+apache_group: www-data
+apache_vhost_dir: /etc/apache2/sites-available
+apache_vhost_file_suffix: ".conf"
+apache_log_dir: /var/log/apache2
+
+php_packages:
+  - php
+  - libapache2-mod-php
+  - php-mysql
+  - php-gd
+  - php-mbstring
+  - php-xml
+  - php-curl
+  - php-zip
+  - php-intl
+
+ufw_port: 80
