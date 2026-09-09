@@ -1,0 +1,9 @@
+user@ubuntuEDU:~/lesson19$ kubectl apply -f ./nginx
+deployment.apps/nginx-deployment created
+user@ubuntuEDU:~/lesson19$ kubectl get deployment -n codeby
+NAME               READY   UP-TO-DATE   AVAILABLE   AGE
+nginx-deployment   2/2     2            2           6s
+user@ubuntuEDU:~/lesson19$ kubectl get pods -n codeby
+NAME                                READY   STATUS    RESTARTS   AGE
+nginx-deployment-7b59b59d7d-r4tpf   1/1     Running   0          11s
+nginx-deployment-7b59b59d7d-x56cl   1/1     Running   0          11s

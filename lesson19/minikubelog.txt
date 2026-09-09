@@ -1,0 +1,24 @@
+user@ubuntuEDU:~$ minikube start
+😄  minikube v1.39.0 on Ubuntu 24.04 (kvm/amd64)
+✨  Automatically selected the docker driver. Other choices: virtualbox, ssh
+💨  For improved Docker performance, enable the overlay Linux kernel module using 'modprobe overlay'
+📌  Using Docker driver with root privileges
+❗  For an improved experience it's recommended to use Docker Engine instead of Docker Desktop.
+Docker Engine installation instructions: https://docs.docker.com/engine/install/#server
+👍  Starting "minikube" primary control-plane node in "minikube" cluster
+🚜  Pulling base image v0.0.51 ...
+💾  Downloading Kubernetes v1.37.0 preload ...
+    > preloaded-images-k8s-v18-v1...:  347.59 MiB / 347.59 MiB  100.00% 38.76 M
+    > gcr.io/k8s-minikube/kicbase:  507.61 MiB / 507.61 MiB  100.00% 34.08 MiB
+🔥  Creating docker container (CPUs=2, Memory=5736MB) ...
+📦  Preparing Kubernetes v1.37.0 on containerd 2.3.4 ...
+🔗  Configuring CNI (Container Networking Interface) ...
+🔎  Verifying Kubernetes components...
+    ▪ Using image gcr.io/k8s-minikube/storage-provisioner:v5
+🌟  Enabled addons: storage-provisioner, default-storageclass
+🏄  Done! kubectl is now configured to use "minikube" cluster and "default" namespace by default
+user@ubuntuEDU:~$ kubectl cluster-info
+Kubernetes control plane is running at https://127.0.0.1:36537
+CoreDNS is running at https://127.0.0.1:36537/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
+
+To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
