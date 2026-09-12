@@ -1,0 +1,651 @@
+Script started on 2026-09-07 16:38:23+03:00 [TERM="xterm-256color" TTY="/dev/pts/1" COLUMNS="209" LINES="51"]
+[?2004h]0;user@ubuntuEDU: ~/docker/lesson17[01;32muser@ubuntuEDU[00m:[01;34m~/docker/lesson17[00m$ ld[Ks /apa[K[K[K[K./apache2/
+[?2004lapache2.conf  [0m[01;34mconf-available[0m  [01;34mconf-enabled[0m  envvars  magic  [01;34mmods-available[0m  [01;34mmods-enabled[0m  ports.conf  [01;34msites-available[0m  [01;34msites-enabled[0m
+[?2004h]0;user@ubuntuEDU: ~/docker/lesson17[01;32muser@ubuntuEDU[00m:[01;34m~/docker/lesson17[00m$ docker network ls
+[?2004lNETWORK ID     NAME      DRIVER    SCOPE
+9408e08c8a08   bridge    bridge    local
+566c14b55310   host      host      local
+6cf4e93d4590   none      null      local
+[?2004h]0;user@ubuntuEDU: ~/docker/lesson17[01;32muser@ubuntuEDU[00m:[01;34m~/docker/lesson17[00m$ docker network[K[K[K[K[K[K[Kvolume ls
+[?2004lDRIVER    VOLUME NAME
+local     6f790ad7a1af87523a4e1e8017d5ecc840521bf93627b73d1c45fd325f21e816
+local     34f398c7484874aa871a2b104ef145981916688d3aa9f25b78991c890588fd2e
+local     54acc2a9984047d66ce74b3b926bd2d7c96ba35c0eb43e394678a8f9b859cb26
+local     5520b0e0671f4544e9e311447f3b95b3c49ccfabee088e32bb01a6da44cb1e4e
+local     6813cd11c559f6dab88b2e8c7260848c99b98b0ccc0cbc9e196b80c268baf4fb
+[?2004h]0;user@ubuntuEDU: ~/docker/lesson17[01;32muser@ubuntuEDU[00m:[01;34m~/docker/lesson17[00m$ docker netwrok[K[K[Korkcr[K[K create --driver bridge wp-net
+[?2004l60fb3dd19560c8d8494caca4214b9223b0fcf7ce48e10034bd195ee3dd3accab
+[?2004h]0;user@ubuntuEDU: ~/docker/lesson17[01;32muser@ubuntuEDU[00m:[01;34m~/docker/lesson17[00m$ docker volume create wp-db
+[?2004lwp-db
+[?2004h]0;user@ubuntuEDU: ~/docker/lesson17[01;32muser@ubuntuEDU[00m:[01;34m~/docker/lesson17[00m$ docker volume create wp-db[Kata
+[?2004lwp-data
+[?2004h]0;user@ubuntuEDU: ~/docker/lesson17[01;32muser@ubuntuEDU[00m:[01;34m~/docker/lesson17[00m$ [7mdocker run -d \[27m
+[7m--name my-sql-wp \[27m
+[7m--network wp-net \[27m
+[7m-e MYSQL_ROOT_PASSWORD=passw0rd \[27m
+[7m-e MYSQL_DATABASE=wordpress \[27m
+[7m-e MYSQL_USER=wpuser \[27m
+[7m-e MYSQL_PASSWORD=passw0rd \[27m
+[7m-v wp-db:/var/lib/mysql \[27m
+[7mmysql:8.0[27m[A[A[A[A[A[A[A[A]0;user@ubuntuEDU: ~/docker/lesson17[01;32muser@ubuntuEDU[00m:[01;34m~/docker/lesson17[00m$ docker run -d \
+--name my-sql-wp \
+--network wp-net \
+-e MYSQL_ROOT_PASSWORD=passw0rd \
+-e MYSQL_DATABASE=wordpress \
+-e MYSQL_USER=wpuser \
+-e MYSQL_PASSWORD=passw0rd \
+-v wp-db:/var/lib/mysql \
+mysql:8.0
+[?2004lUnable to find image 'mysql:8.0' locally
+8.0: Pulling from library/mysql
+
+[1A[2K7534d1db9f8d: Pulling fs layer [1B
+[1A[2K4c8a3e0d4e4b: Pulling fs layer [1B
+[1A[2K6ef6c7b50a93: Pulling fs layer [1B
+[1A[2K96d30d9fbee8: Pulling fs layer [1B
+[1A[2Ka63160a5eda1: Pulling fs layer [1B
+[1A[2K49ec2dab01d9: Pulling fs layer [1B
+[1A[2Ke3e5d1ac74c1: Pulling fs layer [1B
+[1A[2Kab24264a27e9: Pulling fs layer [1B
+[1A[2Kedf85873f64e: Pulling fs layer [1B
+[1A[2K0d74d296605b: Pulling fs layer [1B
+[1A[2K297d04cfe470: Pulling fs layer [1B[11A[2K7534d1db9f8d: Download complete [11B[8A[2K96d30d9fbee8: Download complete [8B[6A[2K49ec2dab01d9: Downloading [=>                                                 ]  4.194MB/129.4MB[6B[6A[2K49ec2dab01d9: Downloading [====>                                              ]  10.49MB/129.4MB[6B[7A[2Ka63160a5eda1: Downloading [=>                                                 ]  1.049MB/49.93MB[7B[9A[2K6ef6c7b50a93: Downloading [==================================================>]     884B/884B[9B[6A[2K49ec2dab01d9: Downloading [=====>                                             ]  14.68MB/129.4MB[6B[10A[2K4c8a3e0d4e4b: Download complete [10B[1A[2K297d04cfe470: Download complete [1B[7A[2Ka63160a5eda1: Downloading [===>                                               ]  3.146MB/49.93MB[7B[9A[2K6ef6c7b50a93: Download complete [9B[7A[2Ka63160a5eda1: Downloading [=====>                                             ]  5.243MB/49.93MB[7B[6A[2K49ec2dab01d9: Downloading [=====>                                             ]  14.68MB/129.4MB[6B[4A[2Kab24264a27e9: Download complete [4B[5A[2Ke3e5d1ac74c1: Download complete [5B[3A[2Kedf85873f64e: Downloading [=>                                                 ]  1.049MB/47.31MB[3B[7A[2Ka63160a5eda1: Downloading [==============>                                    ]  14.68MB/49.93MB[7B[6A[2K49ec2dab01d9: Downloading [======>                                            ]  17.83MB/129.4MB[6B
+[1A[2K796812c73292: Download complete [1B[4A[2Kedf85873f64e: Downloading [===>                                               ]  3.146MB/47.31MB[4B[8A[2Ka63160a5eda1: Downloading [======================>                            ]  22.02MB/49.93MB[8B[7A[2K49ec2dab01d9: Downloading [========>                                          ]  22.02MB/129.4MB[7B[4A[2Kedf85873f64e: Downloading [====>                                              ]  4.194MB/47.31MB[4B[8A[2Ka63160a5eda1: Downloading [==========================>                        ]  26.21MB/49.93MB[8B[7A[2K49ec2dab01d9: Downloading [========>                                          ]  23.07MB/129.4MB[7B[4A[2Kedf85873f64e: Downloading [======>                                            ]  6.291MB/47.31MB[4B[8A[2Ka63160a5eda1: Downloading [===============================>                   ]  31.46MB/49.93MB[8B
+[1A[2Kaf166387641d: Downloading [===>                                               ]  1.049MB/15.43MB[1B[8A[2K49ec2dab01d9: Downloading [========>                                          ]  23.07MB/129.4MB[8B[5A[2Kedf85873f64e: Downloading [============>                                      ]  11.53MB/47.31MB[5B[9A[2Ka63160a5eda1: Downloading [================================>                  ]  32.51MB/49.93MB[9B[1A[2Kaf166387641d: Downloading [==========>                                        ]  3.146MB/15.43MB[1B[8A[2K49ec2dab01d9: Downloading [========>                                          ]  23.07MB/129.4MB[8B[5A[2Kedf85873f64e: Downloading [===============>                                   ]  14.68MB/47.31MB[5B[9A[2Ka63160a5eda1: Downloading [====================================>              ]   36.7MB/49.93MB[9B[1A[2Kaf166387641d: Downloading [=======================>                           ]   7.34MB/15.43MB[1B[8A[2K49ec2dab01d9: Downloading [=========>                                         ]  24.12MB/129.4MB[8B[5A[2Kedf85873f64e: Downloading [=================>                                 ]  16.78MB/47.31MB[5B[9A[2Ka63160a5eda1: Downloading [========================================>          ]  40.89MB/49.93MB[9B[1A[2Kaf166387641d: Downloading [==============================>                    ]  9.437MB/15.43MB[1B[8A[2K49ec2dab01d9: Downloading [===========>                                       ]  30.41MB/129.4MB[8B[9A[2Ka63160a5eda1: Downloading [=============================================>     ]  45.09MB/49.93MB[9B[1A[2Kaf166387641d: Downloading [============================================>      ]  13.63MB/15.43MB[1B[8A[2K49ec2dab01d9: Downloading [=============>                                     ]   34.6MB/129.4MB[8B[5A[2Kedf85873f64e: Downloading [======================>                            ]  20.97MB/47.31MB[5B[4A[2K0d74d296605b: Downloading [=====>                                             ]  655.4kB/6.173MB[4B[5A[2Kedf85873f64e: Downloading [==========================>                        ]  25.17MB/47.31MB[5B[9A[2Ka63160a5eda1: Downloading [==================================================>]  49.93MB/49.93MB[9B[1A[2Kaf166387641d: Download complete [1B[8A[2K49ec2dab01d9: Downloading [==============>                                    ]   38.8MB/129.4MB[8B[5A[2Kedf85873f64e: Downloading [=============================>                     ]  28.31MB/47.31MB[5B[9A[2Ka63160a5eda1: Download complete [9B[8A[2K49ec2dab01d9: Downloading [================>                                  ]  41.94MB/129.4MB[8B[4A[2K0d74d296605b: Downloading [========>                                          ]  1.049MB/6.173MB[4B[8A[2K49ec2dab01d9: Downloading [=================>                                 ]  45.09MB/129.4MB[8B[4A[2K0d74d296605b: Downloading [========>                                          ]  1.049MB/6.173MB[4B[5A[2Kedf85873f64e: Downloading [=================================>                 ]  31.46MB/47.31MB[5B[5A[2Kedf85873f64e: Downloading [====================================>              ]   34.6MB/47.31MB[5B[8A[2K49ec2dab01d9: Downloading [===================>                               ]  49.28MB/129.4MB[8B[4A[2K0d74d296605b: Downloading [========>                                          ]  1.049MB/6.173MB[4B[5A[2Kedf85873f64e: Downloading [=======================================>           ]  37.75MB/47.31MB[5B[8A[2K49ec2dab01d9: Downloading [====================>                              ]  53.48MB/129.4MB[8B[4A[2K0d74d296605b: Downloading [========>                                          ]  1.049MB/6.173MB[4B[8A[2K49ec2dab01d9: Downloading [======================>                            ]  57.67MB/129.4MB[8B[4A[2K0d74d296605b: Downloading [================>                                  ]  2.097MB/6.173MB[4B[5A[2Kedf85873f64e: Downloading [===========================================>       ]  40.89MB/47.31MB[5B[5A[2Kedf85873f64e: Downloading [===============================================>   ]  45.09MB/47.31MB[5B[8A[2K49ec2dab01d9: Downloading [=======================>                           ]  61.87MB/129.4MB[8B[4A[2K0d74d296605b: Downloading [================>                                  ]  2.097MB/6.173MB[4B[5A[2Kedf85873f64e: Download complete [5B[8A[2K49ec2dab01d9: Downloading [=========================>                         ]  67.11MB/129.4MB[8B[4A[2K0d74d296605b: Downloading [================>                                  ]  2.097MB/6.173MB[4B[5A[2Kedf85873f64e: Extracting 1 s[5B[8A[2K49ec2dab01d9: Downloading [============================>                      ]   73.4MB/129.4MB[8B[4A[2K0d74d296605b: Downloading [=========================>                         ]  3.146MB/6.173MB[4B[5A[2Kedf85873f64e: Extracting 1 s[5B[8A[2K49ec2dab01d9: Downloading [=============================>                     ]  77.59MB/129.4MB[8B[4A[2K0d74d296605b: Downloading [=========================>                         ]  3.146MB/6.173MB[4B[5A[2Kedf85873f64e: Extracting 1 s[5B[4A[2K0d74d296605b: Downloading [=================================>                 ]  4.194MB/6.173MB[4B[8A[2K49ec2dab01d9: Downloading [===============================>                   ]  81.79MB/129.4MB[8B[5A[2Kedf85873f64e: Extracting 1 s[5B[8A[2K49ec2dab01d9: Downloading [==================================>                ]  88.08MB/129.4MB[8B[4A[2K0d74d296605b: Downloading [=================================>                 ]  4.194MB/6.173MB[4B[5A[2Kedf85873f64e: Extracting 1 s[5B[8A[2K49ec2dab01d9: Downloading [====================================>              ]  93.32MB/129.4MB[8B[4A[2K0d74d296605b: Downloading [==========================================>        ]  5.243MB/6.173MB[4B[5A[2Kedf85873f64e: Extracting 1 s[5B[8A[2K49ec2dab01d9: Downloading [=====================================>             ]  97.52MB/129.4MB[8B[4A[2K0d74d296605b: Downloading [==========================================>        ]  5.243MB/6.173MB[4B[5A[2Kedf85873f64e: Extracting 1 s[5B[8A[2K49ec2dab01d9: Downloading [========================================>          ]  105.9MB/129.4MB[8B[4A[2K0d74d296605b: Download complete [4B[5A[2Kedf85873f64e: Extracting 1 s[5B[8A[2K49ec2dab01d9: Downloading [==========================================>        ]  109.1MB/129.4MB[8B[5A[2Kedf85873f64e: Extracting 1 s[5B[8A[2K49ec2dab01d9: Downloading [==========================================>        ]    111MB/129.4MB[8B[5A[2Kedf85873f64e: Extracting 1 s[5B[8A[2K49ec2dab01d9: Downloading [==============================================>    ]  121.3MB/129.4MB[8B[5A[2Kedf85873f64e: Extracting 1 s[5B[8A[2K49ec2dab01d9: Downloading [==================================================>]  129.4MB/129.4MB[8B[5A[2Kedf85873f64e: Extracting 2 s[5B[8A[2K49ec2dab01d9: Downloading [==================================================>]  129.4MB/129.4MB[8B[5A[2Kedf85873f64e: Extracting 2 s[5B[8A[2K49ec2dab01d9: Download complete [8B[5A[2Kedf85873f64e: Extracting 2 s[5B[5A[2Kedf85873f64e: Extracting 2 s[5B[5A[2Kedf85873f64e: Extracting 2 s[5B[11A[2K6ef6c7b50a93: Pull complete [11B[7A[2Ke3e5d1ac74c1: Extracting 1 s[7B[5A[2Kedf85873f64e: Pull complete [5B[7A[2Ke3e5d1ac74c1: Pull complete [7B[4A[2K0d74d296605b: Extracting 1 s[4B[4A[2K0d74d296605b: Pull complete [4B[12A[2K4c8a3e0d4e4b: Pull complete [12B[3A[2K297d04cfe470: Pull complete [3B[9A[2Ka63160a5eda1: Extracting 1 s[9B[9A[2Ka63160a5eda1: Extracting 1 s[9B[9A[2Ka63160a5eda1: Extracting 1 s[9B[9A[2Ka63160a5eda1: Extracting 1 s[9B[9A[2Ka63160a5eda1: Extracting 1 s[9B[9A[2Ka63160a5eda1: Extracting 1 s[9B[9A[2Ka63160a5eda1: Extracting 1 s[9B[9A[2Ka63160a5eda1: Extracting 1 s[9B[9A[2Ka63160a5eda1: Extracting 1 s[9B[13A[2K7534d1db9f8d: Extracting 1 s[13B[9A[2Ka63160a5eda1: Pull complete [9B[13A[2K7534d1db9f8d: Pull complete [13B[8A[2K49ec2dab01d9: Extracting 1 s[8B[8A[2K49ec2dab01d9: Extracting 1 s[8B[8A[2K49ec2dab01d9: Extracting 1 s[8B[8A[2K49ec2dab01d9: Extracting 1 s[8B[8A[2K49ec2dab01d9: Extracting 1 s[8B[8A[2K49ec2dab01d9: Extracting 1 s[8B[8A[2K49ec2dab01d9: Extracting 1 s[8B[8A[2K49ec2dab01d9: Extracting 1 s[8B[8A[2K49ec2dab01d9: Extracting 1 s[8B[8A[2K49ec2dab01d9: Extracting 1 s[8B[8A[2K49ec2dab01d9: Extracting 1 s[8B[8A[2K49ec2dab01d9: Extracting 2 s[8B[8A[2K49ec2dab01d9: Extracting 2 s[8B[8A[2K49ec2dab01d9: Extracting 2 s[8B[8A[2K49ec2dab01d9: Extracting 2 s[8B[8A[2K49ec2dab01d9: Extracting 2 s[8B[8A[2K49ec2dab01d9: Extracting 2 s[8B[8A[2K49ec2dab01d9: Extracting 2 s[8B[8A[2K49ec2dab01d9: Extracting 2 s[8B[8A[2K49ec2dab01d9: Extracting 2 s[8B[8A[2K49ec2dab01d9: Extracting 2 s[8B[8A[2K49ec2dab01d9: Extracting 3 s[8B[8A[2K49ec2dab01d9: Extracting 3 s[8B[8A[2K49ec2dab01d9: Extracting 3 s[8B[8A[2K49ec2dab01d9: Extracting 3 s[8B[8A[2K49ec2dab01d9: Extracting 3 s[8B[8A[2K49ec2dab01d9: Extracting 3 s[8B[8A[2K49ec2dab01d9: Extracting 3 s[8B[8A[2K49ec2dab01d9: Extracting 3 s[8B[8A[2K49ec2dab01d9: Extracting 3 s[8B[8A[2K49ec2dab01d9: Extracting 3 s[8B[8A[2K49ec2dab01d9: Extracting 4 s[8B[8A[2K49ec2dab01d9: Extracting 4 s[8B[8A[2K49ec2dab01d9: Extracting 4 s[8B[8A[2K49ec2dab01d9: Extracting 4 s[8B[8A[2K49ec2dab01d9: Extracting 4 s[8B[8A[2K49ec2dab01d9: Extracting 4 s[8B[8A[2K49ec2dab01d9: Extracting 4 s[8B[8A[2K49ec2dab01d9: Extracting 4 s[8B[8A[2K49ec2dab01d9: Extracting 4 s[8B[8A[2K49ec2dab01d9: Extracting 4 s[8B[8A[2K49ec2dab01d9: Extracting 5 s[8B[8A[2K49ec2dab01d9: Extracting 5 s[8B[8A[2K49ec2dab01d9: Extracting 5 s[8B[8A[2K49ec2dab01d9: Extracting 5 s[8B[8A[2K49ec2dab01d9: Extracting 5 s[8B[8A[2K49ec2dab01d9: Extracting 5 s[8B[8A[2K49ec2dab01d9: Extracting 5 s[8B[8A[2K49ec2dab01d9: Extracting 5 s[8B[8A[2K49ec2dab01d9: Extracting 5 s[8B[8A[2K49ec2dab01d9: Extracting 5 s[8B[8A[2K49ec2dab01d9: Extracting 6 s[8B[8A[2K49ec2dab01d9: Extracting 6 s[8B[8A[2K49ec2dab01d9: Extracting 6 s[8B[8A[2K49ec2dab01d9: Extracting 6 s[8B[8A[2K49ec2dab01d9: Extracting 6 s[8B[8A[2K49ec2dab01d9: Extracting 6 s[8B[8A[2K49ec2dab01d9: Extracting 6 s[8B[10A[2K96d30d9fbee8: Pull complete [10B[6A[2Kab24264a27e9: Pull complete [6B[8A[2K49ec2dab01d9: Pull complete [8BDigest: sha256:7dcddc01f13bab2f15cde676d44d01f61fc9f99fe7785e86196dfc07d358ae2b
+Status: Downloaded newer image for mysql:8.0
+991c8355bc75f8feb1cc15538ea3c51e9d6792e14c34c124c0e429fe3315994a
+[?2004h]0;user@ubuntuEDU: ~/docker/lesson17[01;32muser@ubuntuEDU[00m:[01;34m~/docker/lesson17[00m$ [7mdocker run -d \[27m
+[7m--name wp \[27m
+[7m--network wp-net \[27m
+[7m-e WORDPRESS_DB_HOST=my-sql-wp:3306 \[27m
+[7m-e WORDPRESS_DB_USER=wpuser \[27m
+[7m-e WORDPRESS_DB_PASSWORD=passw0rd \[27m
+[7m-e WORDPRESS_DB_NAME=wordpress \[27m
+[7m-v ./apache2/:/etc/apache2 \[27m
+[7m-v wp-data:/var/www/html \[27m
+[7m-p 8080:80 \[27m
+[7m--restart unless-stopped \[27m
+[7mwordpress:latest[27m[A[A[A[A[A[A[A[A[A[A[A]0;user@ubuntuEDU: ~/docker/lesson17[01;32muser@ubuntuEDU[00m:[01;34m~/docker/lesson17[00m$ docker run -d \
+--name wp \
+--network wp-net \
+-e WORDPRESS_DB_HOST=my-sql-wp:3306 \
+-e WORDPRESS_DB_USER=wpuser \
+-e WORDPRESS_DB_PASSWORD=passw0rd \
+-e WORDPRESS_DB_NAME=wordpress \
+-v ./apache2/:/etc/apache2 \
+-v wp-data:/var/www/html \
+-p 8080:80 \
+--restart unless-stopped \
+wordpress:latest
+[?2004lUnable to find image 'wordpress:latest' locally
+latest: Pulling from library/wordpress
+
+[1A[2K1d90a86c04ed: Pulling fs layer [1B
+[1A[2K42778c36a165: Pulling fs layer [1B
+[1A[2K7d96e675fc11: Pulling fs layer [1B
+[1A[2Kecf99494936e: Pulling fs layer [1B
+[1A[2K4f4fb700ef54: Pulling fs layer [1B
+[1A[2K6310eb16bf42: Pulling fs layer [1B
+[1A[2Kebf4deebcf57: Pulling fs layer [1B
+[1A[2K3b9b87870595: Pulling fs layer [1B
+[1A[2Kf985b85e8e02: Pulling fs layer [1B
+[1A[2K40f07d74952e: Pulling fs layer [1B
+[1A[2K26099c2520af: Pulling fs layer [1B
+[1A[2K045109643db4: Pulling fs layer [1B
+[1A[2K932b172a46b4: Pulling fs layer [1B
+[1A[2Ke355f499f412: Pulling fs layer [1B
+[1A[2K71dc02b0c445: Pulling fs layer [1B
+[1A[2Kc56ba9ea3138: Pulling fs layer [1B
+[1A[2Kaba2157579c6: Pulling fs layer [1B
+[1A[2K06ea3768eeab: Pulling fs layer [1B
+[1A[2Kfffa43530262: Pulling fs layer [1B
+[1A[2Kb1890dc62d4f: Pulling fs layer [1B
+[1A[2K94598c0333c2: Pulling fs layer [1B
+[1A[2Ka7a8575cd8da: Pulling fs layer [1B
+[1A[2K2094ea7532ff: Pulling fs layer [1B
+[1A[2K9ee23f701a63: Pulling fs layer [1B[22A[2K7d96e675fc11: Download complete [22B[23A[2K42778c36a165: Download complete [23B[18A[2Kebf4deebcf57: Downloading [======>                                            ]  4.194MB/32.96MB[18B[20A[2K4f4fb700ef54: Downloading [==================================================>]      32B/32B[20B[20A[2K4f4fb700ef54: Download complete [20B[11A[2Ke355f499f412: Download complete [11B[13A[2K045109643db4: Downloading [==================================================>]     315B/315B[13B[24A[2K1d90a86c04ed: Download complete [24B[21A[2Kecf99494936e: Download complete [21B[18A[2Kebf4deebcf57: Downloading [============>                                      ]  8.389MB/32.96MB[18B[13A[2K045109643db4: Download complete [13B[18A[2Kebf4deebcf57: Downloading [======================>                            ]  14.68MB/32.96MB[18B[15A[2K40f07d74952e: Download complete [15B[14A[2K26099c2520af: Download complete [14B[7A[2K06ea3768eeab: Download complete [7B[1A[2K9ee23f701a63: Download complete [1B[10A[2K71dc02b0c445: Download complete [10B[4A[2K94598c0333c2: Download complete [4B[5A[2Kb1890dc62d4f: Download complete [5B[18A[2Kebf4deebcf57: Downloading [======================================>            ]  25.17MB/32.96MB[18B[9A[2Kc56ba9ea3138: Downloading [========>                                          ]  2.097MB/11.72MB[9B[2A[2K2094ea7532ff: Downloading [=>                                                 ]  1.049MB/29.96MB[2B[18A[2Kebf4deebcf57: Downloading [===============================================>   ]  31.46MB/32.96MB[18B[3A[2Ka7a8575cd8da: Downloading [========================>                          ]  2.097MB/4.239MB[3B[2A[2K2094ea7532ff: Downloading [=======>                                           ]  4.194MB/29.96MB[2B[18A[2Kebf4deebcf57: Download complete [18B[3A[2Ka7a8575cd8da: Download complete [3B[12A[2K932b172a46b4: Downloading [>                                                  ]  2.097MB/117.8MB[12B[9A[2Kc56ba9ea3138: Downloading [=============>                                     ]  3.146MB/11.72MB[9B[12A[2K932b172a46b4: Downloading [=>                                                 ]  3.146MB/117.8MB[12B[9A[2Kc56ba9ea3138: Downloading [=============>                                     ]  3.146MB/11.72MB[9B[2A[2K2094ea7532ff: Downloading [==========>                                        ]  6.291MB/29.96MB[2B[17A[2K3b9b87870595: Downloading [=>                                                 ]  1.049MB/35.38MB[17B[6A[2Kfffa43530262: Downloading [====>                                              ]  1.049MB/12.78MB[6B[2A[2K2094ea7532ff: Downloading [==============>                                    ]  8.389MB/29.96MB[2B[17A[2K3b9b87870595: Downloading [=>                                                 ]  1.049MB/35.38MB[17B[12A[2K932b172a46b4: Downloading [==>                                                ]  6.291MB/117.8MB[12B[9A[2Kc56ba9ea3138: Downloading [==========================>                        ]  6.291MB/11.72MB[9B[9A[2Kc56ba9ea3138: Downloading [============================================>      ]  10.49MB/11.72MB[9B[16A[2Kf985b85e8e02: Download complete [16B[6A[2Kfffa43530262: Downloading [====>                                              ]  1.049MB/12.78MB[6B[2A[2K2094ea7532ff: Downloading [======================>                            ]  13.63MB/29.96MB[2B[17A[2K3b9b87870595: Downloading [==>                                                ]  2.097MB/35.38MB[17B[12A[2K932b172a46b4: Downloading [====>                                              ]  10.49MB/117.8MB[12B[19A[2K6310eb16bf42: Downloading [=>                                                 ]  1.049MB/29.79MB[19B[6A[2Kfffa43530262: Downloading [========>                                          ]  2.097MB/12.78MB[6B[2A[2K2094ea7532ff: Downloading [===============================>                   ]  18.87MB/29.96MB[2B[17A[2K3b9b87870595: Downloading [====>                                              ]  3.146MB/35.38MB[17B[12A[2K932b172a46b4: Downloading [======>                                            ]  14.68MB/117.8MB[12B[9A[2Kc56ba9ea3138: Download complete [9B[19A[2K6310eb16bf42: Downloading [=>                                                 ]  1.049MB/29.79MB[19B[6A[2Kfffa43530262: Downloading [============>                                      ]  3.146MB/12.78MB[6B[2A[2K2094ea7532ff: Downloading [===========================================>       ]  26.21MB/29.96MB[2B[17A[2K3b9b87870595: Downloading [====>                                              ]  3.146MB/35.38MB[17B[12A[2K932b172a46b4: Downloading [========>                                          ]  19.92MB/117.8MB[12B[8A[2Kaba2157579c6: Downloading [==================================================>]  2.457kB/2.457kB[8B[6A[2Kfffa43530262: Downloading [============>                                      ]  3.146MB/12.78MB[6B[17A[2K3b9b87870595: Downloading [=====>                                             ]  4.194MB/35.38MB[17B[12A[2K932b172a46b4: Downloading [=========>                                         ]  23.07MB/117.8MB[12B[8A[2Kaba2157579c6: Download complete [8B[19A[2K6310eb16bf42: Downloading [=>                                                 ]  1.049MB/29.79MB[19B[19A[2K6310eb16bf42: Downloading [===>                                               ]  2.097MB/29.79MB[19B[6A[2Kfffa43530262: Downloading [============>                                      ]  3.146MB/12.78MB[6B[2A[2K2094ea7532ff: Download complete [2B[17A[2K3b9b87870595: Downloading [=====>                                             ]  4.194MB/35.38MB[17B[12A[2K932b172a46b4: Downloading [===========>                                       ]  26.21MB/117.8MB[12B
+[1A[2Kae0ec88e605f: Download complete [1B[20A[2K6310eb16bf42: Downloading [===>                                               ]  2.097MB/29.79MB[20B[7A[2Kfffa43530262: Downloading [================>                                  ]  4.194MB/12.78MB[7B[18A[2K3b9b87870595: Downloading [=======>                                           ]  5.243MB/35.38MB[18B
+[1A[2Kaad25151333c: Downloading [========================>                          ]  4.194MB/8.698MB[1B[14A[2K932b172a46b4: Downloading [============>                                      ]  29.36MB/117.8MB[14B[21A[2K6310eb16bf42: Downloading [===>                                               ]  2.097MB/29.79MB[21B[8A[2Kfffa43530262: Downloading [================>                                  ]  4.194MB/12.78MB[8B[19A[2K3b9b87870595: Downloading [=======>                                           ]  5.243MB/35.38MB[19B[1A[2Kaad25151333c: Download complete [1B[14A[2K932b172a46b4: Downloading [==============>                                    ]  33.55MB/117.8MB[14B[21A[2K6310eb16bf42: Downloading [=====>                                             ]  3.146MB/29.79MB[21B[8A[2Kfffa43530262: Downloading [====================>                              ]  5.243MB/12.78MB[8B[19A[2K3b9b87870595: Downloading [========>                                          ]  6.291MB/35.38MB[19B[14A[2K932b172a46b4: Downloading [===============>                                   ]   36.7MB/117.8MB[14B[21A[2K6310eb16bf42: Downloading [=====>                                             ]  3.146MB/29.79MB[21B[8A[2Kfffa43530262: Downloading [====================>                              ]  5.243MB/12.78MB[8B[19A[2K3b9b87870595: Downloading [========>                                          ]  6.291MB/35.38MB[19B[14A[2K932b172a46b4: Downloading [================>                                  ]  39.85MB/117.8MB[14B[21A[2K6310eb16bf42: Downloading [=====>                                             ]  3.146MB/29.79MB[21B[8A[2Kfffa43530262: Downloading [====================>                              ]  5.243MB/12.78MB[8B[19A[2K3b9b87870595: Downloading [==========>                                        ]   7.34MB/35.38MB[19B[14A[2K932b172a46b4: Downloading [==================>                                ]  42.99MB/117.8MB[14B[19A[2K3b9b87870595: Downloading [==========>                                        ]   7.34MB/35.38MB[19B[14A[2K932b172a46b4: Downloading [===================>                               ]  46.14MB/117.8MB[14B[21A[2K6310eb16bf42: Downloading [=======>                                           ]  4.194MB/29.79MB[21B[8A[2Kfffa43530262: Downloading [========================>                          ]  6.291MB/12.78MB[8B[19A[2K3b9b87870595: Downloading [===========>                                       ]  8.389MB/35.38MB[19B[14A[2K932b172a46b4: Downloading [====================>                              ]  49.28MB/117.8MB[14B[21A[2K6310eb16bf42: Downloading [=======>                                           ]  4.194MB/29.79MB[21B[8A[2Kfffa43530262: Downloading [========================>                          ]  6.291MB/12.78MB[8B[21A[2K6310eb16bf42: Downloading [=======>                                           ]  4.194MB/29.79MB[21B[8A[2Kfffa43530262: Downloading [============================>                      ]   7.34MB/12.78MB[8B[19A[2K3b9b87870595: Downloading [===========>                                       ]  8.389MB/35.38MB[19B[14A[2K932b172a46b4: Downloading [======================>                            ]  52.43MB/117.8MB[14B[19A[2K3b9b87870595: Downloading [=============>                                     ]  9.437MB/35.38MB[19B[14A[2K932b172a46b4: Downloading [=======================>                           ]  55.57MB/117.8MB[14B[21A[2K6310eb16bf42: Downloading [========>                                          ]  5.243MB/29.79MB[21B[8A[2Kfffa43530262: Downloading [============================>                      ]   7.34MB/12.78MB[8B[21A[2K6310eb16bf42: Downloading [========>                                          ]  5.243MB/29.79MB[21B[8A[2Kfffa43530262: Downloading [============================>                      ]   7.34MB/12.78MB[8B[19A[2K3b9b87870595: Downloading [=============>                                     ]  9.437MB/35.38MB[19B[14A[2K932b172a46b4: Downloading [========================>                          ]  58.72MB/117.8MB[14B[21A[2K6310eb16bf42: Downloading [==========>                                        ]  6.291MB/29.79MB[21B[8A[2Kfffa43530262: Downloading [================================>                  ]  8.389MB/12.78MB[8B[19A[2K3b9b87870595: Downloading [==============>                                    ]  10.49MB/35.38MB[19B[14A[2K932b172a46b4: Downloading [==========================>                        ]  62.91MB/117.8MB[14B[14A[2K932b172a46b4: Downloading [============================>                      ]  66.06MB/117.8MB[14B[21A[2K6310eb16bf42: Downloading [==========>                                        ]  6.291MB/29.79MB[21B[8A[2Kfffa43530262: Downloading [====================================>              ]  9.437MB/12.78MB[8B[19A[2K3b9b87870595: Downloading [==============>                                    ]  10.49MB/35.38MB[19B[21A[2K6310eb16bf42: Downloading [============>                                      ]   7.34MB/29.79MB[21B[8A[2Kfffa43530262: Downloading [====================================>              ]  9.437MB/12.78MB[8B[19A[2K3b9b87870595: Downloading [==============>                                    ]  10.49MB/35.38MB[19B[14A[2K932b172a46b4: Downloading [=============================>                     ]  69.21MB/117.8MB[14B[19A[2K3b9b87870595: Downloading [================>                                  ]  11.53MB/35.38MB[19B[14A[2K932b172a46b4: Downloading [===============================>                   ]   73.4MB/117.8MB[14B[21A[2K6310eb16bf42: Downloading [==============>                                    ]  8.389MB/29.79MB[21B[8A[2Kfffa43530262: Downloading [=========================================>         ]  10.49MB/12.78MB[8B[19A[2K3b9b87870595: Downloading [================>                                  ]  11.53MB/35.38MB[19B[14A[2K932b172a46b4: Downloading [================================>                  ]  76.55MB/117.8MB[14B[21A[2K6310eb16bf42: Downloading [===============>                                   ]  9.437MB/29.79MB[21B[8A[2Kfffa43530262: Downloading [=============================================>     ]  11.53MB/12.78MB[8B[21A[2K6310eb16bf42: Downloading [===============>                                   ]  9.437MB/29.79MB[21B[8A[2Kfffa43530262: Downloading [=============================================>     ]  11.53MB/12.78MB[8B[19A[2K3b9b87870595: Downloading [=================>                                 ]  12.58MB/35.38MB[19B[14A[2K932b172a46b4: Downloading [==================================>                ]  80.74MB/117.8MB[14B[19A[2K3b9b87870595: Downloading [=================>                                 ]  12.58MB/35.38MB[19B[14A[2K932b172a46b4: Downloading [====================================>              ]  85.98MB/117.8MB[14B[21A[2K6310eb16bf42: Downloading [=================>                                 ]  10.49MB/29.79MB[21B[8A[2Kfffa43530262: Download complete [8B[21A[2K6310eb16bf42: Downloading [===================>                               ]  11.53MB/29.79MB[21B[19A[2K3b9b87870595: Downloading [===================>                               ]  13.63MB/35.38MB[19B[14A[2K932b172a46b4: Downloading [======================================>            ]  90.18MB/117.8MB[14B[19A[2K3b9b87870595: Downloading [===================>                               ]  13.63MB/35.38MB[19B[14A[2K932b172a46b4: Downloading [========================================>          ]  94.37MB/117.8MB[14B[21A[2K6310eb16bf42: Downloading [======================>                            ]  13.63MB/29.79MB[21B[21A[2K6310eb16bf42: Downloading [========================>                          ]  14.68MB/29.79MB[21B[19A[2K3b9b87870595: Downloading [====================>                              ]  14.68MB/35.38MB[19B[14A[2K932b172a46b4: Downloading [==========================================>        ]  99.61MB/117.8MB[14B[21A[2K6310eb16bf42: Downloading [==========================>                        ]  15.73MB/29.79MB[21B[19A[2K3b9b87870595: Downloading [======================>                            ]  15.73MB/35.38MB[19B[14A[2K932b172a46b4: Downloading [============================================>      ]  103.8MB/117.8MB[14B[14A[2K932b172a46b4: Downloading [===============================================>   ]  111.1MB/117.8MB[14B[21A[2K6310eb16bf42: Downloading [=============================>                     ]  17.83MB/29.79MB[21B[19A[2K3b9b87870595: Downloading [======================>                            ]  15.73MB/35.38MB[19B[21A[2K6310eb16bf42: Downloading [=================================>                 ]  19.92MB/29.79MB[21B[19A[2K3b9b87870595: Downloading [=======================>                           ]  16.78MB/35.38MB[19B[14A[2K932b172a46b4: Downloading [=================================================> ]  117.4MB/117.8MB[14B[19A[2K3b9b87870595: Downloading [=========================>                         ]  17.83MB/35.38MB[19B[14A[2K932b172a46b4: Downloading [==================================================>]  117.8MB/117.8MB[14B[21A[2K6310eb16bf42: Downloading [===================================>               ]  20.97MB/29.79MB[21B[19A[2K3b9b87870595: Downloading [==========================>                        ]  18.87MB/35.38MB[19B[14A[2K932b172a46b4: Download complete [14B[21A[2K6310eb16bf42: Downloading [====================================>              ]  22.02MB/29.79MB[21B[21A[2K6310eb16bf42: Downloading [========================================>          ]  24.12MB/29.79MB[21B[19A[2K3b9b87870595: Downloading [============================>                      ]  19.92MB/35.38MB[19B[21A[2K6310eb16bf42: Downloading [===========================================>       ]  26.21MB/29.79MB[21B[19A[2K3b9b87870595: Downloading [=============================>                     ]  20.97MB/35.38MB[19B[21A[2K6310eb16bf42: Downloading [===============================================>   ]  28.31MB/29.79MB[21B[19A[2K3b9b87870595: Downloading [===============================>                   ]  22.02MB/35.38MB[19B[21A[2K6310eb16bf42: Downloading [==================================================>]  29.79MB/29.79MB[21B[19A[2K3b9b87870595: Downloading [================================>                  ]  23.07MB/35.38MB[19B[19A[2K3b9b87870595: Downloading [================================>                  ]  23.07MB/35.38MB[19B[21A[2K6310eb16bf42: Download complete [21B[21A[2K6310eb16bf42: Extracting 1 s[21B[19A[2K3b9b87870595: Downloading [================================>                  ]  23.07MB/35.38MB[19B[21A[2K6310eb16bf42: Extracting 1 s[21B[19A[2K3b9b87870595: Downloading [===================================>               ]  25.17MB/35.38MB[19B[21A[2K6310eb16bf42: Extracting 1 s[21B[19A[2K3b9b87870595: Downloading [=====================================>             ]  26.21MB/35.38MB[19B[21A[2K6310eb16bf42: Extracting 1 s[21B[19A[2K3b9b87870595: Downloading [======================================>            ]  27.26MB/35.38MB[19B[21A[2K6310eb16bf42: Extracting 1 s[21B[19A[2K3b9b87870595: Downloading [========================================>          ]  28.31MB/35.38MB[19B[21A[2K6310eb16bf42: Extracting 1 s[21B[19A[2K3b9b87870595: Downloading [=========================================>         ]  29.36MB/35.38MB[19B[21A[2K6310eb16bf42: Extracting 1 s[21B[19A[2K3b9b87870595: Downloading [============================================>      ]  31.46MB/35.38MB[19B[21A[2K6310eb16bf42: Extracting 1 s[21B[19A[2K3b9b87870595: Downloading [=============================================>     ]  32.51MB/35.38MB[19B[21A[2K6310eb16bf42: Extracting 1 s[21B[19A[2K3b9b87870595: Downloading [================================================>  ]   34.6MB/35.38MB[19B[21A[2K6310eb16bf42: Extracting 1 s[21B[19A[2K3b9b87870595: Download complete [19B[16A[2K26099c2520af: Pull complete [16B[14A[2K932b172a46b4: Extracting 1 s[14B[21A[2K6310eb16bf42: Pull complete [21B[14A[2K932b172a46b4: Extracting 1 s[14B[14A[2K932b172a46b4: Extracting 1 s[14B[14A[2K932b172a46b4: Extracting 1 s[14B[14A[2K932b172a46b4: Extracting 1 s[14B[14A[2K932b172a46b4: Extracting 1 s[14B[14A[2K932b172a46b4: Extracting 1 s[14B[14A[2K932b172a46b4: Extracting 1 s[14B[14A[2K932b172a46b4: Extracting 1 s[14B[14A[2K932b172a46b4: Extracting 1 s[14B[14A[2K932b172a46b4: Extracting 2 s[14B[14A[2K932b172a46b4: Extracting 2 s[14B[14A[2K932b172a46b4: Extracting 2 s[14B[14A[2K932b172a46b4: Extracting 2 s[14B[14A[2K932b172a46b4: Extracting 2 s[14B[14A[2K932b172a46b4: Extracting 2 s[14B[14A[2K932b172a46b4: Extracting 2 s[14B[14A[2K932b172a46b4: Extracting 2 s[14B[14A[2K932b172a46b4: Extracting 2 s[14B[14A[2K932b172a46b4: Extracting 2 s[14B[14A[2K932b172a46b4: Extracting 2 s[14B[14A[2K932b172a46b4: Extracting 3 s[14B[14A[2K932b172a46b4: Extracting 3 s[14B[14A[2K932b172a46b4: Extracting 3 s[14B[14A[2K932b172a46b4: Extracting 3 s[14B[14A[2K932b172a46b4: Extracting 3 s[14B[14A[2K932b172a46b4: Extracting 3 s[14B[14A[2K932b172a46b4: Extracting 3 s[14B[14A[2K932b172a46b4: Extracting 3 s[14B[14A[2K932b172a46b4: Extracting 3 s[14B[14A[2K932b172a46b4: Extracting 4 s[14B[14A[2K932b172a46b4: Extracting 4 s[14B[14A[2K932b172a46b4: Extracting 4 s[14B[14A[2K932b172a46b4: Extracting 4 s[14B[14A[2K932b172a46b4: Extracting 4 s[14B[14A[2K932b172a46b4: Extracting 4 s[14B[6A[2K94598c0333c2: Pull complete [6B[5A[2Ka7a8575cd8da: Extracting 1 s[5B[14A[2K932b172a46b4: Pull complete [14B[5A[2Ka7a8575cd8da: Extracting 1 s[5B[5A[2Ka7a8575cd8da: Extracting 1 s[5B[5A[2Ka7a8575cd8da: Extracting 1 s[5B[3A[2K9ee23f701a63: Pull complete [3B[7A[2Kb1890dc62d4f: Pull complete [7B[5A[2Ka7a8575cd8da: Pull complete [5B[8A[2Kfffa43530262: Extracting 1 s[8B[8A[2Kfffa43530262: Pull complete [8B[12A[2K71dc02b0c445: Pull complete [12B[11A[2Kc56ba9ea3138: Extracting 1 s[11B[11A[2Kc56ba9ea3138: Extracting 1 s[11B[11A[2Kc56ba9ea3138: Extracting 1 s[11B[11A[2Kc56ba9ea3138: Extracting 1 s[11B[11A[2Kc56ba9ea3138: Extracting 1 s[11B[11A[2Kc56ba9ea3138: Pull complete [11B[10A[2Kaba2157579c6: Pull complete [10B[24A[2K7d96e675fc11: Pull complete [24B[25A[2K42778c36a165: Pull complete [25B[22A[2K4f4fb700ef54: Pull complete [22B[23A[2Kecf99494936e: Pull complete [23B[20A[2Kebf4deebcf57: Extracting 1 s[20B[20A[2Kebf4deebcf57: Extracting 1 s[20B[20A[2Kebf4deebcf57: Extracting 1 s[20B[20A[2Kebf4deebcf57: Extracting 1 s[20B[20A[2Kebf4deebcf57: Extracting 1 s[20B[20A[2Kebf4deebcf57: Extracting 1 s[20B[20A[2Kebf4deebcf57: Extracting 1 s[20B[20A[2Kebf4deebcf57: Extracting 1 s[20B[20A[2Kebf4deebcf57: Extracting 1 s[20B[20A[2Kebf4deebcf57: Extracting 1 s[20B[20A[2Kebf4deebcf57: Extracting 1 s[20B[20A[2Kebf4deebcf57: Pull complete [20B[4A[2K2094ea7532ff: Extracting 1 s[4B[4A[2K2094ea7532ff: Extracting 1 s[4B[4A[2K2094ea7532ff: Extracting 1 s[4B[4A[2K2094ea7532ff: Extracting 1 s[4B[4A[2K2094ea7532ff: Extracting 1 s[4B[4A[2K2094ea7532ff: Extracting 1 s[4B[4A[2K2094ea7532ff: Extracting 1 s[4B[4A[2K2094ea7532ff: Extracting 1 s[4B[4A[2K2094ea7532ff: Extracting 1 s[4B[13A[2Ke355f499f412: Extracting 1 s[13B[15A[2K045109643db4: Pull complete [15B[4A[2K2094ea7532ff: Pull complete [4B[13A[2Ke355f499f412: Pull complete [13B[18A[2Kf985b85e8e02: Pull complete [18B[19A[2K3b9b87870595: Extracting 1 s[19B[19A[2K3b9b87870595: Extracting 1 s[19B[19A[2K3b9b87870595: Extracting 1 s[19B[19A[2K3b9b87870595: Extracting 1 s[19B[19A[2K3b9b87870595: Extracting 1 s[19B[19A[2K3b9b87870595: Extracting 1 s[19B[19A[2K3b9b87870595: Extracting 1 s[19B[19A[2K3b9b87870595: Extracting 1 s[19B[19A[2K3b9b87870595: Extracting 1 s[19B[19A[2K3b9b87870595: Extracting 1 s[19B[19A[2K3b9b87870595: Extracting 1 s[19B[19A[2K3b9b87870595: Extracting 2 s[19B[19A[2K3b9b87870595: Extracting 2 s[19B[9A[2K06ea3768eeab: Extracting 1 s[9B[19A[2K3b9b87870595: Pull complete [19B[26A[2K1d90a86c04ed: Pull complete [26B[17A[2K40f07d74952e: Pull complete [17B[9A[2K06ea3768eeab: Pull complete [9BDigest: sha256:5a93c470ae8220fddf71f6ebe3bc94e615ddc2ae4d9810f795b830fb11c41a17
+Status: Downloaded newer image for wordpress:latest
+773528c283a899160a8597591134862d75647e2f14ff94f2e837f96794de5bcb
+[?2004h]0;user@ubuntuEDU: ~/docker/lesson17[01;32muser@ubuntuEDU[00m:[01;34m~/docker/lesson17[00m$ docker ps
+[?2004lCONTAINER ID   IMAGE              COMMAND                  CREATED          STATUS          PORTS                                     NAMES
+773528c283a8   wordpress:latest   "docker-entrypoint.s…"   4 seconds ago    Up 3 seconds    0.0.0.0:8080->80/tcp, [::]:8080->80/tcp   wp
+991c8355bc75   mysql:8.0          "docker-entrypoint.s…"   30 seconds ago   Up 29 seconds   3306/tcp, 33060/tcp                       my-sql-wp
+[?2004h]0;user@ubuntuEDU: ~/docker/lesson17[01;32muser@ubuntuEDU[00m:[01;34m~/docker/lesson17[00m$ curl -v my[K[Khttp://localhost"[K:8080
+[?2004l* Host localhost:8080 was resolved.
+* IPv6: ::1
+* IPv4: 127.0.0.1
+*   Trying [::1]:8080...
+* Connected to localhost (::1) port 8080
+> GET / HTTP/1.1
+> Host: localhost:8080
+> User-Agent: curl/8.5.0
+> Accept: */*
+> 
+< HTTP/1.1 302 Found
+< Date: Mon, 07 Sep 2026 13:40:28 GMT
+< Server: Apache/2.4.68 (Debian)
+< X-Powered-By: PHP/8.3.33
+< Expires: Wed, 11 Jan 1984 05:00:00 GMT
+< Cache-Control: no-cache, must-revalidate, max-age=0, no-store, private
+< X-Redirect-By: WordPress
+< Location: http://localhost:8080/wp-admin/install.php
+< Content-Length: 0
+< Content-Type: text/html; charset=UTF-8
+< 
+* Connection #0 to host localhost left intact
+[?2004h]0;user@ubuntuEDU: ~/docker/lesson17[01;32muser@ubuntuEDU[00m:[01;34m~/docker/lesson17[00m$ docker inspect wp
+[?2004l[
+    {
+        "Id": "773528c283a899160a8597591134862d75647e2f14ff94f2e837f96794de5bcb",
+        "Created": "2026-09-07T13:40:06.865672981Z",
+        "Path": "docker-entrypoint.sh",
+        "Args": [
+            "apache2-foreground"
+        ],
+        "State": {
+            "Status": "running",
+            "Running": true,
+            "Paused": false,
+            "Restarting": false,
+            "OOMKilled": false,
+            "Dead": false,
+            "Pid": 3826,
+            "ExitCode": 0,
+            "Error": "",
+            "StartedAt": "2026-09-07T13:40:07.363843029Z",
+            "FinishedAt": "0001-01-01T00:00:00Z"
+        },
+        "Image": "sha256:5a93c470ae8220fddf71f6ebe3bc94e615ddc2ae4d9810f795b830fb11c41a17",
+        "ResolvConfPath": "/var/lib/docker/containers/773528c283a899160a8597591134862d75647e2f14ff94f2e837f96794de5bcb/resolv.conf",
+        "HostnamePath": "/var/lib/docker/containers/773528c283a899160a8597591134862d75647e2f14ff94f2e837f96794de5bcb/hostname",
+        "HostsPath": "/var/lib/docker/containers/773528c283a899160a8597591134862d75647e2f14ff94f2e837f96794de5bcb/hosts",
+        "LogPath": "/var/lib/docker/containers/773528c283a899160a8597591134862d75647e2f14ff94f2e837f96794de5bcb/773528c283a899160a8597591134862d75647e2f14ff94f2e837f96794de5bcb-json.log",
+        "Name": "/wp",
+        "RestartCount": 0,
+        "Driver": "overlayfs",
+        "Platform": "linux",
+        "MountLabel": "",
+        "ProcessLabel": "",
+        "AppArmorProfile": "",
+        "ExecIDs": null,
+        "HostConfig": {
+            "Binds": [
+                "/home/user/docker/lesson17/apache2:/etc/apache2",
+                "wp-data:/var/www/html"
+            ],
+            "ContainerIDFile": "",
+            "LogConfig": {
+                "Type": "json-file",
+                "Config": {}
+            },
+            "NetworkMode": "wp-net",
+            "PortBindings": {
+                "80/tcp": [
+                    {
+                        "HostIp": "",
+                        "HostPort": "8080"
+                    }
+                ]
+            },
+            "RestartPolicy": {
+                "Name": "unless-stopped",
+                "MaximumRetryCount": 0
+            },
+            "AutoRemove": false,
+            "VolumeDriver": "",
+            "VolumesFrom": null,
+            "ConsoleSize": [
+                51,
+                209
+            ],
+            "CapAdd": null,
+            "CapDrop": null,
+            "CgroupnsMode": "private",
+            "Dns": null,
+            "DnsOptions": [],
+            "DnsSearch": [],
+            "ExtraHosts": null,
+            "GroupAdd": null,
+            "IpcMode": "private",
+            "Cgroup": "",
+            "Links": null,
+            "OomScoreAdj": 0,
+            "PidMode": "",
+            "Privileged": false,
+            "PublishAllPorts": false,
+            "ReadonlyRootfs": false,
+            "SecurityOpt": null,
+            "UTSMode": "",
+            "UsernsMode": "",
+            "ShmSize": 67108864,
+            "Runtime": "runc",
+            "Isolation": "",
+            "CpuShares": 0,
+            "Memory": 0,
+            "NanoCpus": 0,
+            "CgroupParent": "",
+            "BlkioWeight": 0,
+            "BlkioWeightDevice": [],
+            "BlkioDeviceReadBps": [],
+            "BlkioDeviceWriteBps": [],
+            "BlkioDeviceReadIOps": [],
+            "BlkioDeviceWriteIOps": [],
+            "CpuPeriod": 0,
+            "CpuQuota": 0,
+            "CpuRealtimePeriod": 0,
+            "CpuRealtimeRuntime": 0,
+            "CpusetCpus": "",
+            "CpusetMems": "",
+            "Devices": [],
+            "DeviceCgroupRules": null,
+            "DeviceRequests": null,
+            "MemoryReservation": 0,
+            "MemorySwap": 0,
+            "MemorySwappiness": null,
+            "OomKillDisable": null,
+            "PidsLimit": null,
+            "Ulimits": null,
+            "CpuCount": 0,
+            "CpuPercent": 0,
+            "IOMaximumIOps": 0,
+            "IOMaximumBandwidth": 0,
+            "MaskedPaths": [
+                "/proc/acpi",
+                "/proc/asound",
+                "/proc/interrupts",
+                "/proc/kcore",
+                "/proc/keys",
+                "/proc/latency_stats",
+                "/proc/sched_debug",
+                "/proc/scsi",
+                "/proc/timer_list",
+                "/proc/timer_stats",
+                "/sys/devices/virtual/powercap",
+                "/sys/firmware"
+            ],
+            "ReadonlyPaths": [
+                "/proc/bus",
+                "/proc/fs",
+                "/proc/irq",
+                "/proc/sys",
+                "/proc/sysrq-trigger"
+            ]
+        },
+        "Storage": {
+            "RootFS": {
+                "Snapshot": {
+                    "Name": "overlayfs"
+                }
+            }
+        },
+        "Mounts": [
+            {
+                "Type": "bind",
+                "Source": "/home/user/docker/lesson17/apache2",
+                "Destination": "/etc/apache2",
+                "Mode": "",
+                "RW": true,
+                "Propagation": "rprivate"
+            },
+            {
+                "Type": "volume",
+                "Name": "wp-data",
+                "Source": "/var/lib/docker/volumes/wp-data/_data",
+                "Destination": "/var/www/html",
+                "Driver": "local",
+                "Mode": "z",
+                "RW": true,
+                "Propagation": ""
+            }
+        ],
+        "Config": {
+            "Hostname": "773528c283a8",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "ExposedPorts": {
+                "80/tcp": {}
+            },
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "WORDPRESS_DB_HOST=my-sql-wp:3306",
+                "WORDPRESS_DB_USER=wpuser",
+                "WORDPRESS_DB_PASSWORD=passw0rd",
+                "WORDPRESS_DB_NAME=wordpress",
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "PHPIZE_DEPS=autoconf \t\tdpkg-dev \t\tfile \t\tg++ \t\tgcc \t\tlibc-dev \t\tmake \t\tpkg-config \t\tre2c",
+                "PHP_INI_DIR=/usr/local/etc/php",
+                "APACHE_CONFDIR=/etc/apache2",
+                "APACHE_ENVVARS=/etc/apache2/envvars",
+                "PHP_CFLAGS=-fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64",
+                "PHP_CPPFLAGS=-fstack-protector-strong -fpic -fpie -O2 -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64",
+                "PHP_LDFLAGS=-Wl,-O1 -pie",
+                "GPG_KEYS=1198C0117593497A5EC5C199286AF1F9897469DC C28D937575603EB4ABB725861C0779DC5C0A9DE4 AFD8691FDAEDF03BDF6E460563F15A9B715376CA",
+                "PHP_VERSION=8.3.33",
+                "PHP_URL=https://www.php.net/distributions/php-8.3.33.tar.xz",
+                "PHP_ASC_URL=https://www.php.net/distributions/php-8.3.33.tar.xz.asc",
+                "PHP_SHA256=e293ed620cec74651bb4a071317892a478aa6840fab22db45c72d77cd42f9676"
+            ],
+            "Cmd": [
+                "apache2-foreground"
+            ],
+            "Image": "wordpress:latest",
+            "Volumes": {
+                "/var/www/html": {}
+            },
+            "WorkingDir": "/var/www/html",
+            "Entrypoint": [
+                "docker-entrypoint.sh"
+            ],
+            "Labels": {},
+            "StopSignal": "SIGWINCH",
+            "StopTimeout": 1
+        },
+        "NetworkSettings": {
+            "SandboxID": "da9054244711e17f11a1c83d0b4db6aa287a01b153d7bb87368f9f7b968d54e4",
+            "SandboxKey": "/var/run/docker/netns/da9054244711",
+            "Ports": {
+                "80/tcp": [
+                    {
+                        "HostIp": "0.0.0.0",
+                        "HostPort": "8080"
+                    },
+                    {
+                        "HostIp": "::",
+                        "HostPort": "8080"
+                    }
+                ]
+            },
+            "Networks": {
+                "wp-net": {
+                    "IPAMConfig": null,
+                    "Links": null,
+                    "Aliases": null,
+                    "DriverOpts": null,
+                    "GwPriority": 0,
+                    "NetworkID": "60fb3dd19560c8d8494caca4214b9223b0fcf7ce48e10034bd195ee3dd3accab",
+                    "EndpointID": "793b1f84b8be275e04c8d00c9920d8bf738612c493b26e4ba9d5d8badb761a3d",
+                    "Gateway": "172.18.0.1",
+                    "IPAddress": "172.18.0.3",
+                    "MacAddress": "7e:c2:08:fe:fa:35",
+                    "IPPrefixLen": 16,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "DNSNames": [
+                        "wp",
+                        "773528c283a8"
+                    ]
+                }
+            }
+        },
+        "ImageManifestDescriptor": {
+            "mediaType": "application/vnd.oci.image.manifest.v1+json",
+            "digest": "sha256:49801e46d08eb27ea68ed62e205bb35b1bb2dc962251bf2292a7d374f9637cee",
+            "size": 5536,
+            "annotations": {
+                "com.docker.official-images.bashbrew.arch": "amd64",
+                "org.opencontainers.image.base.digest": "sha256:426302af3139d37735a0b909cf8202e8c38ea534dd8c8637bf8577c79cfe19bf",
+                "org.opencontainers.image.base.name": "php:8.3-apache",
+                "org.opencontainers.image.created": "2026-08-25T01:35:49Z",
+                "org.opencontainers.image.revision": "bf223d1c2087b0b2c3b86eefa830fe4bbc2bce07",
+                "org.opencontainers.image.source": "https://github.com/docker-library/wordpress.git#bf223d1c2087b0b2c3b86eefa830fe4bbc2bce07:latest/php8.3/apache",
+                "org.opencontainers.image.url": "https://hub.docker.com/_/wordpress",
+                "org.opencontainers.image.version": "7.1.0-apache"
+            },
+            "platform": {
+                "architecture": "amd64",
+                "os": "linux"
+            }
+        }
+    }
+]
+[?2004h]0;user@ubuntuEDU: ~/docker/lesson17[01;32muser@ubuntuEDU[00m:[01;34m~/docker/lesson17[00m$ docker inspect wp[K[Kmy-a[Ksql-wp
+[?2004l[
+    {
+        "Id": "991c8355bc75f8feb1cc15538ea3c51e9d6792e14c34c124c0e429fe3315994a",
+        "Created": "2026-09-07T13:39:40.467762624Z",
+        "Path": "docker-entrypoint.sh",
+        "Args": [
+            "mysqld"
+        ],
+        "State": {
+            "Status": "running",
+            "Running": true,
+            "Paused": false,
+            "Restarting": false,
+            "OOMKilled": false,
+            "Dead": false,
+            "Pid": 3430,
+            "ExitCode": 0,
+            "Error": "",
+            "StartedAt": "2026-09-07T13:39:41.116119262Z",
+            "FinishedAt": "0001-01-01T00:00:00Z"
+        },
+        "Image": "sha256:7dcddc01f13bab2f15cde676d44d01f61fc9f99fe7785e86196dfc07d358ae2b",
+        "ResolvConfPath": "/var/lib/docker/containers/991c8355bc75f8feb1cc15538ea3c51e9d6792e14c34c124c0e429fe3315994a/resolv.conf",
+        "HostnamePath": "/var/lib/docker/containers/991c8355bc75f8feb1cc15538ea3c51e9d6792e14c34c124c0e429fe3315994a/hostname",
+        "HostsPath": "/var/lib/docker/containers/991c8355bc75f8feb1cc15538ea3c51e9d6792e14c34c124c0e429fe3315994a/hosts",
+        "LogPath": "/var/lib/docker/containers/991c8355bc75f8feb1cc15538ea3c51e9d6792e14c34c124c0e429fe3315994a/991c8355bc75f8feb1cc15538ea3c51e9d6792e14c34c124c0e429fe3315994a-json.log",
+        "Name": "/my-sql-wp",
+        "RestartCount": 0,
+        "Driver": "overlayfs",
+        "Platform": "linux",
+        "MountLabel": "",
+        "ProcessLabel": "",
+        "AppArmorProfile": "",
+        "ExecIDs": null,
+        "HostConfig": {
+            "Binds": [
+                "wp-db:/var/lib/mysql"
+            ],
+            "ContainerIDFile": "",
+            "LogConfig": {
+                "Type": "json-file",
+                "Config": {}
+            },
+            "NetworkMode": "wp-net",
+            "PortBindings": {},
+            "RestartPolicy": {
+                "Name": "no",
+                "MaximumRetryCount": 0
+            },
+            "AutoRemove": false,
+            "VolumeDriver": "",
+            "VolumesFrom": null,
+            "ConsoleSize": [
+                51,
+                209
+            ],
+            "CapAdd": null,
+            "CapDrop": null,
+            "CgroupnsMode": "private",
+            "Dns": null,
+            "DnsOptions": [],
+            "DnsSearch": [],
+            "ExtraHosts": null,
+            "GroupAdd": null,
+            "IpcMode": "private",
+            "Cgroup": "",
+            "Links": null,
+            "OomScoreAdj": 0,
+            "PidMode": "",
+            "Privileged": false,
+            "PublishAllPorts": false,
+            "ReadonlyRootfs": false,
+            "SecurityOpt": null,
+            "UTSMode": "",
+            "UsernsMode": "",
+            "ShmSize": 67108864,
+            "Runtime": "runc",
+            "Isolation": "",
+            "CpuShares": 0,
+            "Memory": 0,
+            "NanoCpus": 0,
+            "CgroupParent": "",
+            "BlkioWeight": 0,
+            "BlkioWeightDevice": [],
+            "BlkioDeviceReadBps": [],
+            "BlkioDeviceWriteBps": [],
+            "BlkioDeviceReadIOps": [],
+            "BlkioDeviceWriteIOps": [],
+            "CpuPeriod": 0,
+            "CpuQuota": 0,
+            "CpuRealtimePeriod": 0,
+            "CpuRealtimeRuntime": 0,
+            "CpusetCpus": "",
+            "CpusetMems": "",
+            "Devices": [],
+            "DeviceCgroupRules": null,
+            "DeviceRequests": null,
+            "MemoryReservation": 0,
+            "MemorySwap": 0,
+            "MemorySwappiness": null,
+            "OomKillDisable": null,
+            "PidsLimit": null,
+            "Ulimits": null,
+            "CpuCount": 0,
+            "CpuPercent": 0,
+            "IOMaximumIOps": 0,
+            "IOMaximumBandwidth": 0,
+            "MaskedPaths": [
+                "/proc/acpi",
+                "/proc/asound",
+                "/proc/interrupts",
+                "/proc/kcore",
+                "/proc/keys",
+                "/proc/latency_stats",
+                "/proc/sched_debug",
+                "/proc/scsi",
+                "/proc/timer_list",
+                "/proc/timer_stats",
+                "/sys/devices/virtual/powercap",
+                "/sys/firmware"
+            ],
+            "ReadonlyPaths": [
+                "/proc/bus",
+                "/proc/fs",
+                "/proc/irq",
+                "/proc/sys",
+                "/proc/sysrq-trigger"
+            ]
+        },
+        "Storage": {
+            "RootFS": {
+                "Snapshot": {
+                    "Name": "overlayfs"
+                }
+            }
+        },
+        "Mounts": [
+            {
+                "Type": "volume",
+                "Name": "wp-db",
+                "Source": "/var/lib/docker/volumes/wp-db/_data",
+                "Destination": "/var/lib/mysql",
+                "Driver": "local",
+                "Mode": "z",
+                "RW": true,
+                "Propagation": ""
+            }
+        ],
+        "Config": {
+            "Hostname": "991c8355bc75",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "ExposedPorts": {
+                "3306/tcp": {},
+                "33060/tcp": {}
+            },
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "MYSQL_PASSWORD=passw0rd",
+                "MYSQL_ROOT_PASSWORD=passw0rd",
+                "MYSQL_DATABASE=wordpress",
+                "MYSQL_USER=wpuser",
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "GOSU_VERSION=1.19",
+                "MYSQL_MAJOR=8.0",
+                "MYSQL_VERSION=8.0.46-1.el9",
+                "MYSQL_SHELL_VERSION=8.0.46-1.el9"
+            ],
+            "Cmd": [
+                "mysqld"
+            ],
+            "Image": "mysql:8.0",
+            "Volumes": {
+                "/var/lib/mysql": {}
+            },
+            "WorkingDir": "/",
+            "Entrypoint": [
+                "docker-entrypoint.sh"
+            ],
+            "Labels": {},
+            "StopTimeout": 1
+        },
+        "NetworkSettings": {
+            "SandboxID": "a38525718eb0d1b620bac4df173b4e7a9702ac1a724849ea5d3cd118d9104d72",
+            "SandboxKey": "/var/run/docker/netns/a38525718eb0",
+            "Ports": {
+                "3306/tcp": null,
+                "33060/tcp": null
+            },
+            "Networks": {
+                "wp-net": {
+                    "IPAMConfig": null,
+                    "Links": null,
+                    "Aliases": null,
+                    "DriverOpts": null,
+                    "GwPriority": 0,
+                    "NetworkID": "60fb3dd19560c8d8494caca4214b9223b0fcf7ce48e10034bd195ee3dd3accab",
+                    "EndpointID": "5437f9bf594b359338cc5ebbe827566aec0f6db5fa65b9e48d00dca1d6ace430",
+                    "Gateway": "172.18.0.1",
+                    "IPAddress": "172.18.0.2",
+                    "MacAddress": "62:76:16:f3:20:e2",
+                    "IPPrefixLen": 16,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "DNSNames": [
+                        "my-sql-wp",
+                        "991c8355bc75"
+                    ]
+                }
+            }
+        },
+        "ImageManifestDescriptor": {
+            "mediaType": "application/vnd.oci.image.manifest.v1+json",
+            "digest": "sha256:62fb722c78b24245ddff1796a0fcee4a49cc5b87e0aaaf20c92d1da9e0a2497b",
+            "size": 3045,
+            "annotations": {
+                "com.docker.official-images.bashbrew.arch": "amd64",
+                "org.opencontainers.image.base.digest": "sha256:1d2ffec1517ae20383e44e0b1de53fd05aa086c3f18097e903be79865cfae3a9",
+                "org.opencontainers.image.base.name": "oraclelinux:9-slim",
+                "org.opencontainers.image.created": "2026-05-04T22:59:17Z",
+                "org.opencontainers.image.revision": "7cf11d5360282effadb347353d5f82339506b106",
+                "org.opencontainers.image.source": "https://github.com/docker-library/mysql.git#7cf11d5360282effadb347353d5f82339506b106:8.0",
+                "org.opencontainers.image.url": "https://hub.docker.com/_/mysql",
+                "org.opencontainers.image.version": "8.0.46"
+            },
+            "platform": {
+                "architecture": "amd64",
+                "os": "linux"
+            }
+        }
+    }
+]
+[?2004h]0;user@ubuntuEDU: ~/docker/lesson17[01;32muser@ubuntuEDU[00m:[01;34m~/docker/lesson17[00m$ [?2004l
+exit
+
+Script done on 2026-09-07 16:40:54+03:00 [COMMAND_EXIT_CODE="0"]
