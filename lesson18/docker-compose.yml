@@ -1,0 +1,50 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: wp-db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - ./data/wp-db:/var/lib/mysql
+    networks:
+      - backend
+  app:
+    image: wordpress:latest
+    container_name: wp
+    depends_on:
+      - db
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_NAME: ${MYSQL_DATABASE}
+      WORDPRESS_DB_USER: ${MYSQL_USER}
+      WORDPRESS_DB_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - ./data/wp:/var/www/html
+    networks:
+      - backend
+      - frontend
+    expose:
+      - "80"
+  proxy:
+    image: nginx:stable-alpine
+    container_name: wp-proxy
+    depends_on:
+      - app
+    volumes:
+      - ./data/nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./data/wp:/var/www/html:ro
+    networks:
+      - frontend
+    ports:
+      - "80:80"
+
+networks:
+  backend:
+    driver: bridge
+    internal: true
+  frontend:
+    driver: bridge
