@@ -1,0 +1,4 @@
+kubectl get pods -n dev -o wide
+NAME                         READY   STATUS    RESTARTS   AGE   IP            NODE           NOMINATED NODE   READINESS GATES
+mysql-0                      1/1     Running   0          43h   10.244.0.29   minikube       <none>           <none>
+wordpress-7fd8c7cbb7-ns5xt   1/1     Running   0          43h   10.244.1.3    minikube-m02   <none>           <none>
