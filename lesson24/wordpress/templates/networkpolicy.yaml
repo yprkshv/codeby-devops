@@ -1,0 +1,21 @@
+{{- if .Values.networkPolicy.enabled }}
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: {{ .Values.networkPolicy.name }}
+  namespace: {{ include "wordpress-app.namespace" . }}
+spec:
+  podSelector:
+    matchLabels:
+      app: {{ .Values.mysql.label }}
+  policyTypes:
+    - Ingress
+  ingress:
+    - from:
+        - podSelector:
+            matchLabels:
+              app: {{ .Values.wordpress.label }}
+      ports:
+        - protocol: TCP
+          port: {{ .Values.mysql.service.port }}
+{{- end }}

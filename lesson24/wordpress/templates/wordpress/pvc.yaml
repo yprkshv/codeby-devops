@@ -1,0 +1,19 @@
+{{- if .Values.wordpress.persistence.enabled }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ .Values.wordpress.name }}-pvc
+  namespace: {{ include "wordpress-app.namespace" . }}
+  labels:
+    app: {{ .Values.wordpress.label }}
+spec:
+  accessModes:
+    {{- toYaml .Values.wordpress.persistence.accessModes | nindent 4 }}
+  storageClassName: {{ .Values.wordpress.persistence.storageClassName }}
+  selector:
+    matchLabels:
+      pv-for: {{ .Values.wordpress.persistence.selectorLabel }}
+  resources:
+    requests:
+      storage: {{ .Values.wordpress.persistence.size }}
+{{- end }}

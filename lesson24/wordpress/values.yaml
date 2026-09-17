@@ -1,0 +1,101 @@
+global:
+  namespace: helm-ns
+# StorageClass
+storageClass:
+  create: true
+  name: local-storage
+  provisioner: kubernetes.io/no-provisioner
+  volumeBindingMode: WaitForFirstConsumer
+  reclaimPolicy: Retain
+# Mysql
+mysql:
+  name: mysql
+  serviceName: mysql-service
+  label: mysql             
+  image:
+    repository: mysql
+    tag: "8.0"
+    pullPolicy: IfNotPresent
+
+  replicaCount: 1
+
+  service:
+    port: 3306
+
+  resources: {}
+
+  auth:
+    rootPassword: "passw0rd"
+    database: "wordpress"
+    user: "wpuser"
+    password: "passw0rd"
+
+  persistence:
+    enabled: true
+    storageClassName: local-storage
+    accessModes:
+      - ReadWriteOnce
+    size: 1Gi
+    selectorLabel: mysql   
+  pv:
+    create: true
+    name: pv-mysql
+    capacity: 2Gi
+    hostPath: /mnt/data/mysql
+    nodeName: minikube
+# wordpress
+wordpress:
+  name: wordpress
+  label: wordpress           
+
+  image:
+    repository: wordpress
+    tag: "latest"
+    pullPolicy: IfNotPresent
+
+  replicaCount: 1
+
+  resources:
+    requests:
+      cpu: "100m"
+    limits:
+      cpu: "500m"
+
+  service:
+    type: NodePort
+    port: 80
+    nodePort: 30081
+
+  persistence:
+    enabled: true
+    storageClassName: local-storage
+    accessModes:
+      - ReadWriteOnce
+    size: 1Gi
+    selectorLabel: wordpress   
+
+  pv:
+    create: true
+    name: pv-wordpress
+    capacity: 2Gi
+    hostPath: /mnt/data/wordpress
+    nodeName: minikube-m02
+
+  hpa:
+    enabled: true
+    minReplicas: 1
+    maxReplicas: 3
+    targetCPUUtilizationPercentage: 50
+
+  ingress:
+    enabled: false
+    className: nginx
+    host: wordpress.local
+    path: /
+    pathType: Prefix
+    annotations: {}
+    tls: []
+# network
+networkPolicy:
+  enabled: true
+  name: allow-from-wordpress-to-mysql

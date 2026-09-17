@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "wordpress-app.fullname" . }}-config
+  namespace: {{ include "wordpress-app.namespace" . }}
+  labels:
+    {{- include "wordpress-app.labels" . | nindent 4 }}
+data:
+  MYSQL_DATABASE: {{ .Values.mysql.auth.database | quote }}
+  MYSQL_USER: {{ .Values.mysql.auth.user | quote }}
+  WORDPRESS_DB_HOST: "{{ .Values.mysql.serviceName }}.{{ include "wordpress-app.namespace" . }}.svc.cluster.local:{{ .Values.mysql.service.port }}"
+  WORDPRESS_DB_DATABASE: {{ .Values.mysql.auth.database | quote }}
+  WORDPRESS_DB_USER: {{ .Values.mysql.auth.user | quote }}
