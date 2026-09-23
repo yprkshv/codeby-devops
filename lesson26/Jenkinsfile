@@ -38,7 +38,7 @@ pipeline {
                             }
                             post {
                                 always {
-                                    junit 'mp_lesson26/lesson26/helloworld/target/surefire-reports/*.xml'
+                                    junit '**/target/surefire-reports/*.xml'
                                 }
                             }
                         }
@@ -78,7 +78,7 @@ pipeline {
                             }
                             post {
                                 always {
-                                    junit 'target/surefire-reports/*.xml'
+                                    junit '**/target/surefire-reports/*.xml'
                                 }
                             }
                         }
@@ -118,7 +118,7 @@ pipeline {
                             }
                             post {
                                 always {
-                                    junit 'target/surefire-reports/*.xml'
+                                    junit '**/target/surefire-reports/*.xml'
                                 }
                             }
                         }
