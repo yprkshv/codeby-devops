@@ -1,0 +1,135 @@
+pipeline {
+    agent none
+
+    options {
+        skipStagesAfterUnstable()
+    }
+
+    stages {
+        stage('Applications') {
+            parallel {
+
+                stage('Hello World') {
+                    agent { label 'maven' }
+                    when {
+                        beforeAgent true
+                        anyOf {
+                            changeset 'helloworld/**'
+                            expression { return currentBuild.number == 1 }
+                        }
+                    }
+                    stages {
+                        stage('Build') {
+                            steps {
+                                dir('helloworld') {
+                                    sh 'mvn -B -DskipTests clean package'
+                                }
+                            }
+                        }
+                        stage('Test') {
+                            steps {
+                                dir('helloworld') {
+                                    sh 'mvn test'
+                                }
+                            }
+                            post {
+                                always {
+                                    junit 'helloworld/target/surefire-reports/*.xml'
+                                }
+                            }
+                        }
+                        stage('Deliver') {
+                            steps {
+                                dir('helloworld') {
+                                    sh 'chmod +x ./jenkins/scripts/deliver.sh'
+                                    sh './jenkins/scripts/deliver.sh'
+                                }
+                            }
+                        }
+                    }
+                }
+
+                stage('Hello Jenkins') {
+                    agent { label 'maven' }
+                    when {
+                        beforeAgent true
+                        anyOf {
+                            changeset 'hellojenkins/**'
+                            expression { return currentBuild.number == 1 }
+                        }
+                    }
+                    stages {
+                        stage('Build') {
+                            steps {
+                                dir('hellojenkins') {
+                                    sh 'mvn -B -DskipTests clean package'
+                                }
+                            }
+                        }
+                        stage('Test') {
+                            steps {
+                                dir('hellojenkins') {
+                                    sh 'mvn test'
+                                }
+                            }
+                            post {
+                                always {
+                                    junit 'hellojenkins/target/surefire-reports/*.xml'
+                                }
+                            }
+                        }
+                        stage('Deliver') {
+                            steps {
+                                dir('hellojenkins') {
+                                    sh 'chmod +x ./jenkins/scripts/deliver.sh'
+                                    sh './jenkins/scripts/deliver.sh'
+                                }
+                            }
+                        }
+                    }
+                }
+
+                stage('Hello Maven') {
+                    agent { label 'maven' }
+                    when {
+                        beforeAgent true
+                        anyOf {
+                            changeset 'hellodevops/**'
+                            expression { return currentBuild.number == 1 }
+                        }
+                    }
+                    stages {
+                        stage('Build') {
+                            steps {
+                                dir('hellodevops') {
+                                    sh 'mvn -B -DskipTests clean package'
+                                }
+                            }
+                        }
+                        stage('Test') {
+                            steps {
+                                dir('hellodevops') {
+                                    sh 'mvn test'
+                                }
+                            }
+                            post {
+                                always {
+                                    junit 'hellodevops/target/surefire-reports/*.xml'
+                                }
+                            }
+                        }
+                        stage('Deliver') {
+                            steps {
+                                dir('hellodevops') {
+                                    sh 'chmod +x ./jenkins/scripts/deliver.sh'
+                                    sh './jenkins/scripts/deliver.sh'
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+}
