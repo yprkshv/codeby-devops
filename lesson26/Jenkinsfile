@@ -8,9 +8,6 @@ pipeline {
     tools {
         maven 'maven3'
     }
-    options {
-        skipStagesAfterUnstable()
-    }
     stages {
         stage('Applications') {
             parallel {
