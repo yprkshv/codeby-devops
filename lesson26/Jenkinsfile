@@ -19,7 +19,7 @@ pipeline {
                         beforeAgent true
                         anyOf {
                             changeset 'hello-world/**'
-                            expression { return currentBuild.number == null }
+                            expression { return currentBuild.number == 1 }
                         }
                     }
                     stages {
