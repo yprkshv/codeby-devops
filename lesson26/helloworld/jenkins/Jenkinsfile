@@ -5,10 +5,10 @@ pipeline {
     options {
         skipStagesAfterUnstable()
     }
-    stages {
-        tools {
+    tools {
             tool name: 'maven3', type: 'maven'
-        }
+    }
+    stages {
         stage('Build') {
             steps {
                 sh 'mvn -B -DskipTests clean package'
