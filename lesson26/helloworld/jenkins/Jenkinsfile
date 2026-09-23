@@ -20,6 +20,7 @@ pipeline {
             steps {
                 dir('lesson26/helloworld') {
                 sh 'mvn test'
+                }
             }
             post {
                 always {
@@ -31,7 +32,6 @@ pipeline {
             steps {
                 dir('lesson26/helloworld') {
                 sh './jenkins/scripts/deliver.sh' 
-                    }
                 }
             }
         }
