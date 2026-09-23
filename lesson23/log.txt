@@ -1,0 +1,10 @@
+kubectl logs diagnostics -n dev
+=== get wordpress ===
+NAME                         READY   STATUS    RESTARTS   AGE   IP            NODE           NOMINATED NODE   READINESS GATES
+wordpress-76bb44c57f-rfhnw   1/1     Running   0          23h   10.244.1.16   minikube-m02   <none>           <none>
+=== get all pods ===
+NAME                         READY   STATUS    RESTARTS      AGE     IP            NODE           NOMINATED NODE   READINESS GATES
+diagnostics                  1/1     Running   0             6s      10.244.1.23   minikube-m02   <none>           <none>
+mysql-0                      1/1     Running   1 (23h ago)   5d21h   10.244.0.5    minikube       <none>           <none>
+wordpress-76bb44c57f-rfhnw   1/1     Running   0             23h     10.244.1.16   minikube-m02   <none>           <none>
+=== complete ===
