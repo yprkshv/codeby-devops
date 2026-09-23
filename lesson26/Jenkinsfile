@@ -5,6 +5,12 @@ pipeline {
     options {
         skipStagesAfterUnstable()
     }
+    tools {
+        maven 'maven3'
+    }
+    options {
+        skipStagesAfterUnstable()
+    }
     stages {
         stage('Applications') {
             parallel {
@@ -13,26 +19,26 @@ pipeline {
                     stages {
                         stage('Build') {
                             steps {
-                                dir('helloworld') {
+                                dir('lesson26/helloworld') {
                                     sh 'mvn -B -DskipTests clean package'
                                 }
                             }
                         }
                         stage('Test') {
                             steps {
-                                dir('helloworld') {
+                                dir('lesson26/helloworld') {
                                     sh 'mvn test'
                                 }
                             }
                             post {
                                 always {
-                                    junit 'helloworld/target/surefire-reports/*.xml'
+                                    junit './target/surefire-reports/*.xml'
                                 }
                             }
                         }
                         stage('Deliver') {
                             steps {
-                                dir('helloworld') {
+                                dir('lesson26/helloworld') {
                                     sh 'chmod +x ./jenkins/scripts/deliver.sh'
                                     sh './jenkins/scripts/deliver.sh'
                                 }
@@ -45,26 +51,26 @@ pipeline {
                     stages {
                         stage('Build') {
                             steps {
-                                dir('hellojenkins') {
+                                dir('lesson26/hellojenkins') {
                                     sh 'mvn -B -DskipTests clean package'
                                 }
                             }
                         }
                         stage('Test') {
                             steps {
-                                dir('hellojenkins') {
+                                dir('lesson26/hellojenkins') {
                                     sh 'mvn test'
                                 }
                             }
                             post {
                                 always {
-                                    junit 'hellojenkins/target/surefire-reports/*.xml'
+                                    junit './target/surefire-reports/*.xml'
                                 }
                             }
                         }
                         stage('Deliver') {
                             steps {
-                                dir('hellojenkins') {
+                                dir('lesson26/hellojenkins') {
                                     sh 'chmod +x ./jenkins/scripts/deliver.sh'
                                     sh './jenkins/scripts/deliver.sh'
                                 }
@@ -77,26 +83,26 @@ pipeline {
                     stages {
                         stage('Build') {
                             steps {
-                                dir('hellodevops') {
+                                dir('lesson26/hellodevops') {
                                     sh 'mvn -B -DskipTests clean package'
                                 }
                             }
                         }
                         stage('Test') {
                             steps {
-                                dir('hellodevops') {
+                                dir('lesson26/hellodevops') {
                                     sh 'mvn test'
                                 }
                             }
                             post {
                                 always {
-                                    junit 'hellodevops/target/surefire-reports/*.xml'
+                                    junit './target/surefire-reports/*.xml'
                                 }
                             }
                         }
                         stage('Deliver') {
                             steps {
-                                dir('hellodevops') {
+                                dir('lesson26/hellodevops') {
                                     sh 'chmod +x ./jenkins/scripts/deliver.sh'
                                     sh './jenkins/scripts/deliver.sh'
                                 }
