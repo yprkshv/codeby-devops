@@ -24,7 +24,7 @@ pipeline {
             }
             post {
                 always {
-                    junit 'mp_lesson26/lesson26/helloworld/target/surefire-reports/*.xml'
+                    junit 'pipetst/lesson26/helloworld/target/surefire-reports/*.xml'
                 }
             }
         }
