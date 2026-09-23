@@ -18,17 +18,21 @@ pipeline {
         }
         stage('Test') {
             steps {
+                dir('lesson26/helloworld') {
                 sh 'mvn test'
             }
             post {
                 always {
-                    junit 'target/surefire-reports/*.xml'
+                    junit 'mp_lesson26/lesson26/helloworld/target/surefire-reports/*.xml'
                 }
             }
         }
         stage('Deliver') { 
             steps {
+                dir('lesson26/helloworld') {
                 sh './jenkins/scripts/deliver.sh' 
+                    }
+                }
             }
         }
     }
