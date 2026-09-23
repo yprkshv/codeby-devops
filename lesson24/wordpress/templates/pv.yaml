@@ -1,0 +1,53 @@
+{{- if .Values.mysql.pv.create }}
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: {{ .Values.mysql.pv.name }}
+  labels:
+    pv-for: {{ .Values.mysql.persistence.selectorLabel }}
+spec:
+  capacity:
+    storage: {{ .Values.mysql.pv.capacity }}
+  volumeMode: Filesystem
+  accessModes:
+    {{- toYaml .Values.mysql.persistence.accessModes | nindent 4 }}
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: {{ .Values.mysql.persistence.storageClassName }}
+  local:
+    path: {{ .Values.mysql.pv.hostPath }}
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: kubernetes.io/hostname
+              operator: In
+              values:
+                - {{ .Values.mysql.pv.nodeName }}
+{{- end }}
+---
+{{- if .Values.wordpress.pv.create }}
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: {{ .Values.wordpress.pv.name }}
+  labels:
+    pv-for: {{ .Values.wordpress.persistence.selectorLabel }}
+spec:
+  capacity:
+    storage: {{ .Values.wordpress.pv.capacity }}
+  volumeMode: Filesystem
+  accessModes:
+    {{- toYaml .Values.wordpress.persistence.accessModes | nindent 4 }}
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: {{ .Values.wordpress.persistence.storageClassName }}
+  local:
+    path: {{ .Values.wordpress.pv.hostPath }}
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: kubernetes.io/hostname
+              operator: In
+              values:
+                - {{ .Values.wordpress.pv.nodeName }}
+{{- end }}

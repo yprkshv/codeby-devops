@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.wordpress.name }}
+  namespace: {{ include "wordpress-app.namespace" . }}
+  labels:
+    app: {{ .Values.wordpress.label }}
+spec:
+  {{- if not .Values.wordpress.hpa.enabled }}
+  replicas: {{ .Values.wordpress.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      app: {{ .Values.wordpress.label }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.wordpress.label }}
+    spec:
+      containers:
+        - name: {{ .Values.wordpress.name }}
+          image: "{{ .Values.wordpress.image.repository }}:{{ .Values.wordpress.image.tag }}"
+          imagePullPolicy: {{ .Values.wordpress.image.pullPolicy }}
+          {{- if .Values.wordpress.resources }}
+          resources:
+            {{- toYaml .Values.wordpress.resources | nindent 12 }}
+          {{- end }}
+          envFrom:
+            - configMapRef:
+                name: {{ include "wordpress-app.fullname" . }}-config
+            - secretRef:
+                name: {{ include "wordpress-app.fullname" . }}-secret
+          ports:
+            - containerPort: 80
+              name: http
+          {{- if .Values.wordpress.persistence.enabled }}
+          volumeMounts:
+            - name: wordpress-storage
+              mountPath: /var/www/html
+          {{- end }}
+      {{- if .Values.wordpress.persistence.enabled }}
+      volumes:
+        - name: wordpress-storage
+          persistentVolumeClaim:
+            claimName: {{ .Values.wordpress.name }}-pvc
+      {{- end }}

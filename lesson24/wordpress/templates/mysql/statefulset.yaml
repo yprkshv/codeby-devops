@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ .Values.mysql.name }}
+  namespace: {{ include "wordpress-app.namespace" . }}
+  labels:
+    app: {{ .Values.mysql.label }}
+spec:
+  serviceName: {{ .Values.mysql.serviceName }}
+  replicas: {{ .Values.mysql.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.mysql.label }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.mysql.label }}
+    spec:
+      containers:
+        - name: mysql
+          image: "{{ .Values.mysql.image.repository }}:{{ .Values.mysql.image.tag }}"
+          imagePullPolicy: {{ .Values.mysql.image.pullPolicy }}
+          envFrom:
+            - configMapRef:
+                name: {{ include "wordpress-app.fullname" . }}-config
+            - secretRef:
+                name: {{ include "wordpress-app.fullname" . }}-secret
+          ports:
+            - containerPort: 3306
+              name: mysql
+          {{- if .Values.mysql.resources }}
+          resources:
+            {{- toYaml .Values.mysql.resources | nindent 12 }}
+          {{- end }}
+          volumeMounts:
+            - name: mysql-storage
+              mountPath: /var/lib/mysql
+  {{- if .Values.mysql.persistence.enabled }}
+  volumeClaimTemplates:
+    - metadata:
+        name: mysql-storage
+      spec:
+        accessModes:
+          {{- toYaml .Values.mysql.persistence.accessModes | nindent 10 }}
+        storageClassName: {{ .Values.mysql.persistence.storageClassName }}
+        selector:
+          matchLabels:
+            pv-for: {{ .Values.mysql.persistence.selectorLabel }}
+        resources:
+          requests:
+            storage: {{ .Values.mysql.persistence.size }}
+  {{- end }}
