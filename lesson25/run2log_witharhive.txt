@@ -1,0 +1,89 @@
+Started by user adminsitrator
+Running as SYSTEM
+Building remotely on 
+firstAgent (maven) in workspace /home/jenkins/workspace/Maven Project
+The recommended git tool is: NONE
+No credentials specified
+ > git rev-parse --resolve-git-dir /home/jenkins/workspace/Maven Project/.git # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url 
+https://github.com/jenkins-docs/simple-java-maven-app.git # timeout=10
+Fetching upstream changes from https://github.com/jenkins-docs/simple-java-maven-app.git
+ > git --version # timeout=10
+ > git --version # 'git version 2.54.0'
+ > git fetch --tags --force --progress -- https://github.com/jenkins-docs/simple-java-maven-app.git +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+Checking out Revision bffd953ff1ea7e0ae32fb7ee2f4b5221d1d96918 (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f bffd953ff1ea7e0ae32fb7ee2f4b5221d1d96918 # timeout=10
+Commit message: "Merge pull request #1367 from jenkins-docs/dependabot/maven/org.apache.maven.plugins-maven-compiler-plugin-3.16.0"
+ > git rev-list --no-walk bffd953ff1ea7e0ae32fb7ee2f4b5221d1d96918 # timeout=10
+Parsing POMs
+Established TCP socket on 41767
+maven35-agent.jar already up to date
+maven35-interceptor.jar already up to date
+maven3-interceptor-commons.jar already up to date
+[Maven Project] $ /opt/java/openjdk/bin/java -cp /home/jenkins/maven35-agent.jar:/home/jenkins/tools/hudson.tasks.Maven_MavenInstallation/Maven/boot/plexus-classworlds-2.11.0.jar:/home/jenkins/tools/hudson.tasks.Maven_MavenInstallation/Maven/conf/logging jenkins.maven3.agent.Maven35Main /home/jenkins/tools/hudson.tasks.Maven_MavenInstallation/Maven /home/jenkins/remoting.jar /home/jenkins/maven35-interceptor.jar /home/jenkins/maven3-interceptor-commons.jar 41767
+<===[JENKINS REMOTING CAPACITY]===>channel started
+Executing Maven:  -B -f /home/jenkins/workspace/Maven Project/pom.xml clean install
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ----------------------< com.mycompany.app:my-app >----------------------
+[INFO] Building my-app 1.0-SNAPSHOT
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- clean:3.2.0:clean (default-clean) @ my-app ---
+[INFO] Deleting /home/jenkins/workspace/Maven Project/target
+[INFO] 
+[INFO] --- enforcer:3.6.3:enforce (enforce-maven) @ my-app ---
+[INFO] Rule 0: org.apache.maven.enforcer.rules.version.RequireMavenVersion passed
+[INFO] Rule 1: org.apache.maven.enforcer.rules.version.RequireJavaVersion passed
+[INFO] 
+[INFO] --- resources:3.4.0:resources (default-resources) @ my-app ---
+[INFO] skip non existing resourceDirectory /home/jenkins/workspace/Maven Project/src/main/resources
+[INFO] 
+[INFO] --- compiler:3.16.0:compile (default-compile) @ my-app ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 1 source file with javac [debug release 21] to target/classes
+[INFO] 
+[INFO] --- resources:3.4.0:testResources (default-testResources) @ my-app ---
+[INFO] skip non existing resourceDirectory /home/jenkins/workspace/Maven Project/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.16.0:testCompile (default-testCompile) @ my-app ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 1 source file with javac [debug release 21] to target/test-classes
+[INFO] 
+[INFO] --- surefire:3.5.4:test (default-test) @ my-app ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.mycompany.app.AppTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.069 s -- in com.mycompany.app.AppTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[JENKINS] Recording test results
+[INFO] 
+[INFO] --- jar:3.5.1:jar (default-jar) @ my-app ---
+[INFO] Building jar: /home/jenkins/workspace/Maven Project/target/my-app-1.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- install:3.1.4:install (default-install) @ my-app ---
+[INFO] Installing /home/jenkins/workspace/Maven Project/pom.xml to /home/jenkins/.m2/repository/com/mycompany/app/my-app/1.0-SNAPSHOT/my-app-1.0-SNAPSHOT.pom
+[INFO] Installing /home/jenkins/workspace/Maven Project/target/my-app-1.0-SNAPSHOT.jar to /home/jenkins/.m2/repository/com/mycompany/app/my-app/1.0-SNAPSHOT/my-app-1.0-SNAPSHOT.jar
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  7.581 s
+[INFO] Finished at: 2026-09-23T10:50:36Z
+[INFO] ------------------------------------------------------------------------
+Waiting for Jenkins to finish collecting data
+[JENKINS] Archiving /home/jenkins/workspace/Maven Project/pom.xml to com.mycompany.app/my-app/1.0-SNAPSHOT/my-app-1.0-SNAPSHOT.pom
+[JENKINS] Archiving /home/jenkins/workspace/Maven Project/target/my-app-1.0-SNAPSHOT.jar to com.mycompany.app/my-app/1.0-SNAPSHOT/my-app-1.0-SNAPSHOT.jar
+channel stopped
+Archiving artifacts
+Finished: SUCCESS
