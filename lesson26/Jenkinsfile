@@ -22,7 +22,6 @@ pipeline {
                             expression { return currentBuild.number == 1 }
                         }
                     }
-                stage('Hello World') {
                     stages {
                         stage('Build') {
                             steps {
@@ -128,7 +127,6 @@ pipeline {
                                 dir('lesson26/hellodevops') {
                                     sh 'chmod +x ./jenkins/scripts/deliver.sh'
                                     sh './jenkins/scripts/deliver.sh'
-                                    }
                                 }
                             }
                         }
