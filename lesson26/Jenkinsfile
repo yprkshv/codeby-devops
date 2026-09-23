@@ -1,5 +1,5 @@
 pipeline {
-    agent none
+    agent any
 
     options {
         skipStagesAfterUnstable()
@@ -10,14 +10,6 @@ pipeline {
             parallel {
 
                 stage('Hello World') {
-                    agent { label 'maven' }
-                    when {
-                        beforeAgent true
-                        anyOf {
-                            changeset 'helloworld/**'
-                            expression { return currentBuild.number == 1 }
-                        }
-                    }
                     stages {
                         stage('Build') {
                             steps {
