@@ -1,17 +1,27 @@
 pipeline {
-    agent {
-        label 'maven'
-    }
+    agent none
+    
     options {
         skipStagesAfterUnstable()
     }
+    
     tools {
         maven 'maven3'
     }
+    
     stages {
         stage('Applications') {
             parallel {
 
+                stage('Hello World') {
+                    agent { label 'maven' }
+                    when {
+                        beforeAgent true
+                        anyOf {
+                            changeset 'hello-world/**'
+                            expression { return currentBuild.number == 1 }
+                        }
+                    }
                 stage('Hello World') {
                     stages {
                         stage('Build') {
@@ -45,6 +55,14 @@ pipeline {
                 }
 
                 stage('Hello Jenkins') {
+                    agent { label 'maven' }
+                    when {
+                        beforeAgent true
+                        anyOf {
+                            changeset 'hello-jenkins/**'
+                            expression { return currentBuild.number == 1 }
+                        }
+                    }                    
                     stages {
                         stage('Build') {
                             steps {
@@ -77,6 +95,14 @@ pipeline {
                 }
 
                 stage('Hello Maven') {
+                    agent { label 'maven' }
+                    when {
+                        beforeAgent true
+                        anyOf {
+                            changeset 'hello-maven/**'
+                            expression { return currentBuild.number == 1 }
+                        }
+                    }                    
                     stages {
                         stage('Build') {
                             steps {
@@ -102,12 +128,12 @@ pipeline {
                                 dir('lesson26/hellodevops') {
                                     sh 'chmod +x ./jenkins/scripts/deliver.sh'
                                     sh './jenkins/scripts/deliver.sh'
+                                    }
                                 }
                             }
                         }
                     }
                 }
-
             }
         }
     }
