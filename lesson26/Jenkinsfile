@@ -42,14 +42,6 @@ pipeline {
                 }
 
                 stage('Hello Jenkins') {
-                    agent { label 'maven' }
-                    when {
-                        beforeAgent true
-                        anyOf {
-                            changeset 'hellojenkins/**'
-                            expression { return currentBuild.number == 1 }
-                        }
-                    }
                     stages {
                         stage('Build') {
                             steps {
@@ -82,14 +74,6 @@ pipeline {
                 }
 
                 stage('Hello Maven') {
-                    agent { label 'maven' }
-                    when {
-                        beforeAgent true
-                        anyOf {
-                            changeset 'hellodevops/**'
-                            expression { return currentBuild.number == 1 }
-                        }
-                    }
                     stages {
                         stage('Build') {
                             steps {
