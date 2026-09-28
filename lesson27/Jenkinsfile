@@ -54,7 +54,7 @@ pipeline {
                         stage('SonarQube Quality Gate') {
                             steps {
                                 sleep(60)
-                                waitForQualityGate()
+                                waitForQualityGate abortPipeline: true
                             }
                         }
                         stage('Deliver') {
@@ -85,6 +85,15 @@ pipeline {
                                 }
                             }
                         }
+                        stage('SonarQube Analysis') {
+                            steps {
+                                dir('lesson27/hellojenkins') {
+                                withSonarQubeEnv(credentialsId: 'sonar', installationName: 'SonarServer') {
+                                    sh "${mvn}/bin/mvn clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=maven -Dsonar.projectName='maven'"
+                                    }
+                                }
+                            }
+                        }
                         stage('Test') {
                             steps {
                                 dir('lesson27/hellojenkins') {
@@ -95,6 +104,12 @@ pipeline {
                                 always {
                                     junit '**/target/surefire-reports/*.xml'
                                 }
+                            }
+                        }
+                         stage('SonarQube Quality Gate') {
+                            steps {
+                                sleep(60)
+                                waitForQualityGate abortPipeline: true
                             }
                         }
                         stage('Deliver') {
@@ -108,7 +123,7 @@ pipeline {
                     }
                 }
 
-                stage('Hello Maven') {
+                stage('Hello Devops') {
                     agent { label 'maven' }
                     when {
                         beforeAgent true
@@ -125,6 +140,15 @@ pipeline {
                                 }
                             }
                         }
+                        stage('SonarQube Analysis') {
+                            steps {
+                                dir('lesson27/hellodevops') {
+                                withSonarQubeEnv(credentialsId: 'sonar', installationName: 'SonarServer') {
+                                    sh "${mvn}/bin/mvn clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=maven -Dsonar.projectName='maven'"
+                                    }
+                                }
+                            }
+                        }
                         stage('Test') {
                             steps {
                                 dir('lesson27/hellodevops') {
@@ -135,6 +159,12 @@ pipeline {
                                 always {
                                     junit '**/target/surefire-reports/*.xml'
                                 }
+                            }
+                        }
+                         stage('SonarQube Quality Gate') {
+                            steps {
+                                sleep(60)
+                                waitForQualityGate abortPipeline: true
                             }
                         }
                         stage('Deliver') {
