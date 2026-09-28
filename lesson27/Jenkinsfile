@@ -51,6 +51,12 @@ pipeline {
                                 }
                             }
                         }
+                        stage('SonarQube Quality Gate') {
+                            steps {
+                                sleep(60)
+                                waitForQualityGate()
+                            }
+                        }
                         stage('Deliver') {
                             steps {
                                 dir('lesson27/helloworld') {
