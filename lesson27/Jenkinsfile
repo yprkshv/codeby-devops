@@ -33,7 +33,7 @@ pipeline {
                         stage('SonarQube Analysis') {
                             steps {
                                 dir('lesson27/helloworld') {
-                                withSonarQubeEnv(credentialsId: 'sonar') {
+                                withSonarQubeEnv(credentialsId: 'sonar', installationName: 'SonarServer') {
                                     sh "${mvn}/bin/mvn clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=maven -Dsonar.projectName='maven'"
                                     }
                                 }
