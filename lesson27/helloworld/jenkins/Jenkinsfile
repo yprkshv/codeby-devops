@@ -1,0 +1,39 @@
+pipeline {
+    agent {
+        label 'maven'
+    }
+    options {
+        skipStagesAfterUnstable()
+    }
+    tools {
+        maven 'maven3'
+    }
+    stages {
+        stage('Build') {
+            steps {
+                dir('lesson26/helloworld') {
+                            sh 'mvn -B -DskipTests clean package'
+                }
+            }
+        }
+        stage('Test') {
+            steps {
+                dir('lesson26/helloworld') {
+                sh 'mvn test'
+                }
+            }
+            post {
+                always {
+                    junit '**/target/surefire-reports/*.xml'
+                }
+            }
+        }
+        stage('Deliver') { 
+            steps {
+                dir('lesson26/helloworld') {
+                sh './jenkins/scripts/deliver.sh' 
+                }
+            }
+        }
+    }
+}
