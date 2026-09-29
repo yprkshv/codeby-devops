@@ -56,7 +56,7 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       - name: Login to Docker Hub
-        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{secrets.DOCKER_PASS }}
+        run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{secrets.DOCKER_PASS }}
       - name: Build Container image
         run: docker build -t ${{ secrets.DOCKER_REPO }}:helloworld -f lesson28/Dockerfile lesson28/helloworld
       - name: Publish Docker image
