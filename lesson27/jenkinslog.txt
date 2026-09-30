@@ -1,0 +1,10 @@
+Wait for SonarQube analysis to be completed and return quality gate statustrue
+64ms
+
+Checking status of SonarQube task '44dec943-89a5-4d96-a709-f87248a13bf2' on server 'SonarServer'
+
+SonarQube task '44dec943-89a5-4d96-a709-f87248a13bf2' status is 'SUCCESS'
+
+SonarQube task '44dec943-89a5-4d96-a709-f87248a13bf2' completed. Quality gate is 'ERROR'
+
+Pipeline aborted due to quality gate failure: ERROR
