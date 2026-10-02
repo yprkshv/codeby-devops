@@ -1,0 +1,56 @@
+version: '3.3'
+services:
+    prometheus:
+      image: prom/prometheus:latest
+      ports: 
+        - 9090:9090
+      volumes:
+        - $PROMETHEUS_CONFIG:/etc/prometheus/prometheus.yml:ro
+        - prometheus_data:/prometheus
+      networks:
+        - monitoring
+
+    blackbox:
+      image: prom/blackbox-exporter:latest
+      ports: 
+        - 9115:9115
+      volumes:
+        - '$BLACKBOX_CONFIG:/etc/blackbox/blackbox.yml:ro'
+      command:
+        - '--config.file=/etc/blackbox/blackbox.yml'
+      networks:
+        - monitoring
+
+    cadvisor:
+      image: gcr.io/cadvisor/cadvisor:latest
+      ports:
+        - 8080:8080
+      volumes:
+        - /:/rootfs:ro
+        - /var/run:/var/run:ro
+        - /sys:/sys:ro
+        - /var/lib/docker/:/var/lib/docker:ro
+      networks:
+        - monitoring
+
+    grafana:
+      image: grafana/grafana:latest
+      ports:
+        - 3000:3000
+      environment:
+        GF_SECURITY_ADMIN_USER: admin
+        GF_SECURITY_ADMIN_PASSWORD: admin
+      volumes:
+        - grafana_data:/var/lib/grafana
+        - $GRAFANA_PROVISION:/etc/grafana/provisioning:ro
+      depends_on:
+        - prometheus
+      networks:
+        - monitoring
+
+volumes:
+  prometheus_data:
+  grafana_data:
+
+networks:
+ monitoring:
